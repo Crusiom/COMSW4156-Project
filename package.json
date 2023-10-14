@@ -1,0 +1,52 @@
+{
+    "name": "yjcc-4156-project",
+    "version": "1.0.0",
+    "description": "",
+    "main": "server.js",
+    "engines": {
+        "node": ">=12.0.0"
+    },
+    "scripts": {
+        "dev": "nodemon server.js",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "lint": "eslint . --ext .js",
+        "lint:fix": "eslint --fix ./**/*.js",
+        "format": "prettier --write --config ./.prettierrc \"./**/*.{js,md,json}\""
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@google-cloud/storage": "^6.11.0",
+        "axios": "^1.4.0",
+        "bcrypt": "^5.1.0",
+        "body-parser": "^1.20.2",
+        "connect-mongodb-session": "^3.1.1",
+        "connect-redis": "^7.1.0",
+        "cookie-parser": "^1.4.6",
+        "cors": "^2.8.5",
+        "dotenv": "^16.3.1",
+        "express": "^4.18.2",
+        "express-session": "^1.17.3",
+        "google-auth-library": "^8.8.0",
+        "jsonwebtoken": "^9.0.2",
+        "lint": "^0.8.19",
+        "method-override": "^3.0.0",
+        "moment": "^2.29.4",
+        "mongoose": "^7.1.1",
+        "multer": "^1.4.5-lts.1",
+        "redis": "^4.6.8",
+        "stripe": "^12.5.0",
+        "winston": "^3.9.0",
+        "yarn": "^1.22.19"
+    },
+    "devDependencies": {
+        "eslint": "^8.49.0",
+        "eslint-config-prettier": "^9.0.0",
+        "eslint-plugin-node": "^11.1.0",
+        "eslint-plugin-prettier": "^5.0.0",
+        "husky": "^8.0.3",
+        "nodemon": "^2.0.22",
+        "prettier": "^3.0.3"
+    }
+}
