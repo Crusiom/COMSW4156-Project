@@ -27,7 +27,7 @@ const UserSchema = new mongoose.Schema({
     },
     app: {
         type: String,
-        select: false,
+        required: true,
     },
     resetPasswordToken: String,
     resetPasswordExpire: Date,
@@ -46,16 +46,6 @@ UserSchema.pre('save', async function (next) {
 
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt);
-});
-
-// encrypt `app` field using bcrypt
-UserSchema.pre('save', async function (next) {
-    if (!this.isModified('app')) {
-        next();
-    }
-
-    const salt = await bcrypt.genSalt(10);
-    this.app = await bcrypt.hash(this.app, salt);
 });
 
 //get jwt(that contains user id and signs it with the JWT_SECRET secret key) and return
