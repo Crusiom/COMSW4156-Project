@@ -4,6 +4,7 @@ require('./config/MongoDB');
 const cors = require('cors');
 const express = require('express');
 const methodOverride = require('method-override');
+const errorHandler = require('./middlewares/error')
 
 const auth = require('./routes/auth');
 const users = require('./routes/users');
@@ -24,6 +25,8 @@ app.use('/api/v1/auth', auth);
 app.use('/api/v1/users', users);
 app.use('/api/v1/apps', apps);
 app.use('/api/v1/events', events);
+
+app.use(errorHandler);
 
 // Start the Express server at specific port.
 const port = process.env.PORT;
