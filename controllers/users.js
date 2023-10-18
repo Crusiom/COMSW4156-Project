@@ -2,7 +2,7 @@ const User = require('../models/Users');
 const asyncHandler = require('../middlewares/async');
 
 // @desc      Get all user profiles (the data fields other than name/email/passwords)
-// @routes    GET /api/v1/auth/users
+// @routes    GET /api/v1/users
 // @access    Private/admin
 exports.getUsers = asyncHandler(async (req, res, next) => {
     try {
@@ -13,7 +13,7 @@ exports.getUsers = asyncHandler(async (req, res, next) => {
 });
 
 // @desc      Get single user profile (the data fields other than name/email/passwords)
-// @routes    GET /api/v1/auth/users/:id
+// @routes    GET /api/v1/users/:id
 // @access    Private/admin
 exports.getUser = asyncHandler(async (req, res, next) => {
     try {
@@ -29,7 +29,7 @@ exports.getUser = asyncHandler(async (req, res, next) => {
 });
 
 // @desc      Create user's profile, which are the data fields other than name/email/passwords
-// @routes    POST /api/v1/auth/users
+// @routes    POST /api/v1/users
 // @access    Private/admin
 exports.createUser = asyncHandler(async (req, res, next) => {
     try {
@@ -45,7 +45,7 @@ exports.createUser = asyncHandler(async (req, res, next) => {
 });
 
 // @desc      Update user's profile (update a field other than name/email/passwords)
-// @routes    PUT /api/v1/auth/users/:id
+// @routes    PUT /api/v1/users/:id
 // @access    Private/admin
 exports.updateUser = asyncHandler(async (req, res, next) => {
     try {
@@ -64,7 +64,7 @@ exports.updateUser = asyncHandler(async (req, res, next) => {
 });
 
 // @desc      Delete user's profile
-// @routes    DELETE /api/v1/auth/users
+// @routes    DELETE /api/v1/users
 // @access    Private/admin
 exports.deleteUser = asyncHandler(async (req, res, next) => {
     try {

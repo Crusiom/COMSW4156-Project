@@ -1,7 +1,3 @@
-// instead of putting any of the following files( like this one, async.js, auth.js, and error.js) in ../server.js, dump everything here in the `middleware` folder.
-
-// Middleware Responsibility: In an Express.js application, middleware functions are responsible for intercepting and processing HTTP requests before they reach the route handlers. These functions are designed to perform tasks like authentication, error handling, request parsing, and more. They are a fundamental part of the request processing pipeline.
-
 // advancedResults.js is designed to enhance the results of database queries, providing features like filtering, pagination, and sorting. it takes in two params: model (a Mongoose model) and populate (a string or an array for populating related data)
 const advancedResults = (model, populate) => async (req, res, next) => {
     let query;
@@ -37,32 +33,6 @@ const advancedResults = (model, populate) => async (req, res, next) => {
     } else {
         query = query.sort('-createdAt');
     }
-
-    // //pagination
-    // const page = parseInt(req.query.page, 10) || 1;
-    // const limit = parseInt(req.query.limit, 10) || 20;
-    // const startIndex = (page - 1) * limit;
-    // const endIndex = page * limit;
-    // const total = await model.countDocuments();
-
-    // // pagination result
-    // const pagination = {};
-
-    // if (endIndex < total) {
-    //     pagination.next = {
-    //         page: page + 1,
-    //         limit,
-    //     };
-    // }
-
-    // if (startIndex > 0) {
-    //     pagination.prev = {
-    //         page: page - 1,
-    //         limit,
-    //     };
-    // }
-
-    // query = query.skip(startIndex).limit(limit);
 
     //populate the data
     if (populate) {
