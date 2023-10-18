@@ -24,7 +24,7 @@ exports.register = asyncHandler(async (req, res, next) => {
         });
         sendTokenResponse(user, 200, res);
     } catch (err) {
-        next(err);
+        return next(err);
     }
 });
 
@@ -66,12 +66,12 @@ exports.logout = asyncHandler(async (req, res, next) => {
             httpOnly: true,
         });
 
-        res.status(200).json({
+        return res.status(200).json({
             success: true,
             data: {},
         });
     } catch (err) {
-        next(err);
+        return next(err);
     }
 });
 
@@ -82,12 +82,12 @@ exports.getMe = asyncHandler(async (req, res, next) => {
     try {
         const user = await User.findById(req.user.id);
 
-        res.status(200).json({
+        return res.status(200).json({
             success: true,
             data: user,
         });
     } catch (err) {
-        next(err);
+        return next(err);
     }
 });
 
@@ -106,7 +106,7 @@ const sendTokenResponse = (user, statusCode, res) => {
         options.secure = true;
     }
 
-    res.status(statusCode).cookie('token', token, options).json({
+    return res.status(statusCode).cookie('token', token, options).json({
         success: true,
         token,
     });
