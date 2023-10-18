@@ -3,6 +3,7 @@ const asyncHandler = require('../middlewares/async');
 
 exports.createEvent = asyncHandler(async (req, res, next) => {
     try {
+        req.body.app = req.user.app;
         const event = await Event.create(req.body);
         res.status(200).json({
             success: true,
@@ -44,7 +45,8 @@ exports.deleteEvent = asyncHandler(async (req, res, next) => {
 
 exports.getEvents = asyncHandler(async (req, res, next) => {
     try {
-        await Event.find();
+        const app = req.user.app;
+        await Event.find({app: app});
         res.status(200)
     } catch (err) {
         next(err);

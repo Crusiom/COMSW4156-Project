@@ -7,7 +7,8 @@ const AppSchema = new mongoose.Schema({
     },
     owner: {
         type: String,
-        required: true
+        required: false,
+        default: ""
     },
     commentEnabled: {
         type: Boolean,
