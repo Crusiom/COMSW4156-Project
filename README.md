@@ -38,28 +38,29 @@ Mocha is a powerful JavaScript testing framework that simplifies the process of 
 
 2. **Install Mocha**: Use npm to install Mocha as a development dependency:
 
-   ```shell
-   npm install mocha --save-dev
-   
+    ```shell
+    npm install mocha --save-dev
+
+    ```
+
 ### Run Test 1
+
 1. For Middlewares part run at root directory:
-   ```
-   mocha "middlewares/*.js"
-   ```
+    ```
+    mocha "middlewares/*.js"
+    ```
 2. For helpers modules, run at root directory:
-   ```
-   mocha "helpers/*.js"
-   ```
+    ```
+    mocha "helpers/*.js"
+    ```
+
 ### Run Test 2
+
 1. For folder models and controllers, run at root directory:
-   ```
-   npm install --save-dev jest
-   ```
-   run the test:
-   ```
-   npm test
-   ```
-
-
-   
-
+    ```
+    npm install --save-dev jest
+    ```
+    run the test:
+    ```
+    npm test
+    ```

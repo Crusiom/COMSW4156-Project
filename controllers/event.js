@@ -46,13 +46,12 @@ exports.deleteEvent = asyncHandler(async (req, res, next) => {
 exports.getEvents = asyncHandler(async (req, res, next) => {
     try {
         const app = req.user.app;
-        const events = await Event.find({app: app});
+        const events = await Event.find({ app: app });
         return res.status(200).json({
             success: true,
-            data: events
-        })
+            data: events,
+        });
     } catch (err) {
         next(err);
     }
 });
-

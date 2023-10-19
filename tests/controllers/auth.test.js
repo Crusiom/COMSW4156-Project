@@ -16,7 +16,7 @@ describe('Authentication Controller', () => {
         res = {
             status: jest.fn().mockReturnThis(),
             json: jest.fn().mockReturnThis(),
-            cookie: jest.fn().mockReturnThis()
+            cookie: jest.fn().mockReturnThis(),
         };
         next = jest.fn();
     });
@@ -30,13 +30,13 @@ describe('Authentication Controller', () => {
                 email: 'john@example.com',
                 password: 'password123',
                 app: 'TestApp',
-                role: 'user'
+                role: 'user',
             };
 
             // Mocking User model functions for the test case
             User.findOne.mockResolvedValue(null);
             User.create.mockResolvedValue({
-                getSignedJwtToken: jest.fn().mockReturnValue('mockToken')
+                getSignedJwtToken: jest.fn().mockReturnValue('mockToken'),
             });
 
             // Invoking the register function
@@ -62,13 +62,13 @@ describe('Authentication Controller', () => {
             // Setting up mock request body
             req.body = {
                 email: 'john@example.com',
-                password: 'password123'
+                password: 'password123',
             };
 
             // Mocking User model functions for the test case
             User.findOne.mockResolvedValue({
                 matchPassword: jest.fn().mockResolvedValue(true),
-                getSignedJwtToken: jest.fn().mockReturnValue('mockToken')
+                getSignedJwtToken: jest.fn().mockReturnValue('mockToken'),
             });
 
             // Invoking the login function
@@ -82,12 +82,12 @@ describe('Authentication Controller', () => {
             // Setting up mock request body with incorrect password
             req.body = {
                 email: 'john@example.com',
-                password: 'wrongpassword'
+                password: 'wrongpassword',
             };
 
             // Mocking User model's findOne function to simulate wrong password scenario
             User.findOne.mockResolvedValue({
-                matchPassword: jest.fn().mockResolvedValue(false)
+                matchPassword: jest.fn().mockResolvedValue(false),
             });
 
             // Invoking the login function
@@ -102,12 +102,12 @@ describe('Authentication Controller', () => {
         it('should logout a user', async () => {
             // Invoking the logout function
             await logout(req, res, next);
-            
+
             // Asserting expected response
             expect(res.status).toHaveBeenCalledWith(200);
             expect(res.json).toHaveBeenCalledWith({
                 success: true,
-                data: {}
+                data: {},
             });
         });
     });
@@ -125,7 +125,7 @@ describe('Authentication Controller', () => {
             expect(res.status).toHaveBeenCalledWith(200);
             expect(res.json).toHaveBeenCalledWith({
                 success: true,
-                data: { name: 'John' }
+                data: { name: 'John' },
             });
         });
     });

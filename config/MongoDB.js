@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
-const DATABASE = process.env.DATABASE 
-const MONGODB = process.env.MONGODB 
+const DATABASE = process.env.DATABASE;
+const MONGODB = process.env.MONGODB;
 
 mongoose.connect(MONGODB, {
     useUnifiedTopology: true,

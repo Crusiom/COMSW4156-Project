@@ -7,7 +7,7 @@ const EventSchema = new mongoose.Schema({
     },
     author: {
         type: String,
-        required: true
+        required: true,
     },
     content: {
         type: String,
@@ -16,7 +16,7 @@ const EventSchema = new mongoose.Schema({
     category: {
         type: String,
         required: true,
-        default: "general",
+        default: 'general',
     },
     app: {
         type: String,
@@ -27,6 +27,5 @@ const EventSchema = new mongoose.Schema({
         default: Date.now,
     },
 });
-
 
 module.exports = mongoose.model('Events', EventSchema);

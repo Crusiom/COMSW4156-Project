@@ -8,7 +8,7 @@ const AppSchema = new mongoose.Schema({
     owner: {
         type: String,
         required: false,
-        default: ""
+        default: '',
     },
     commentEnabled: {
         type: Boolean,
@@ -24,8 +24,7 @@ const AppSchema = new mongoose.Schema({
         type: Boolean,
         required: true,
         defualt: true,
-    }
+    },
 });
-
 
 module.exports = mongoose.model('Apps', AppSchema);

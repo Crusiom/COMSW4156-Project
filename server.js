@@ -4,7 +4,7 @@ require('./config/MongoDB');
 const cors = require('cors');
 const express = require('express');
 const methodOverride = require('method-override');
-const errorHandler = require('./middlewares/error')
+const errorHandler = require('./middlewares/error');
 
 const auth = require('./routes/auth');
 const users = require('./routes/users');

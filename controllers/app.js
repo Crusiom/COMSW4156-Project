@@ -18,7 +18,7 @@ exports.createApp = asyncHandler(async (req, res, next) => {
 exports.updateApp = asyncHandler(async (req, res, next) => {
     try {
         if (app.owner !== req.user._id) {
-            return next(ErrorResponse("You cannot access this app", 401))
+            return next(ErrorResponse('You cannot access this app', 401));
         }
         const app = await App.findByIdAndUpdate(req.params.id, req.body, {
             new: true,

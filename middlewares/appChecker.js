@@ -8,10 +8,10 @@ exports.checkAppConfig = (setting) => {
         const app = req.user.app;
         const currentApp = await App.findOneById(app);
         if (!currentApp) {
-            return next(new ErrorResponse("Cannot find this app", 404));
+            return next(new ErrorResponse('Cannot find this app', 404));
         }
         if (!currentApp[setting]) {
-            return next(new ErrorResponse("This function has been closed by the publisher"));
+            return next(new ErrorResponse('This function has been closed by the publisher'));
         }
         next();
     });

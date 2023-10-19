@@ -4,11 +4,11 @@ const { createEvent, updateEvent, getEvents, deleteEvent } = require('../control
 const router = express.Router();
 
 const { protect } = require('../middlewares/auth');
-const { checkAppConfig } = require('../middlewares/appChecker')
+const { checkAppConfig } = require('../middlewares/appChecker');
 
 router.use(protect);
 
 router.route('/:id').put(updateEvent).delete(deleteEvent);
-router.route('/', checkAppConfig("Event")).get(getEvents).post(createEvent);
+router.route('/', checkAppConfig('Event')).get(getEvents).post(createEvent);
 
 module.exports = router;

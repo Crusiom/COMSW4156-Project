@@ -19,14 +19,14 @@ describe('App Model Test', () => {
     it('create & save app successfully', async () => {
         // Creating an instance of the App model with valid data
         const validApp = new App({
-            title: "Test App",
+            title: 'Test App',
             commentEnabled: true,
             eventEnabled: true,
-            visibleEnabled: true
+            visibleEnabled: true,
         });
         // Mocking the save function to resolve with the app instance
         mockSave.mockResolvedValueOnce(validApp);
-        
+
         // Saving the instance and asserting the result
         const savedApp = await validApp.save();
         expect(savedApp).toMatchObject(validApp);
@@ -36,17 +36,17 @@ describe('App Model Test', () => {
     it('find app by id', async () => {
         // Mock data for the app we want to find
         const findApp = {
-            _id: "5f4f5f450f3f3f3f3f3f3f3f",
-            title: "Test App",
+            _id: '5f4f5f450f3f3f3f3f3f3f3f',
+            title: 'Test App',
             commentEnabled: true,
             eventEnabled: true,
-            visibleEnabled: true
+            visibleEnabled: true,
         };
         // Mocking the findById function to resolve with the app data
         mockFindById.mockResolvedValueOnce(findApp);
-        
+
         // Searching for the app and asserting the result
-        const foundApp = await App.findById("5f4f5f450f3f3f3f3f3f3f3f");
+        const foundApp = await App.findById('5f4f5f450f3f3f3f3f3f3f3f');
         expect(foundApp).toMatchObject(findApp);
     });
 });

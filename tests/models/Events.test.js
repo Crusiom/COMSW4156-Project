@@ -20,15 +20,15 @@ describe('Event Model Test', () => {
     it('create & save event successfully', async () => {
         // Creating an instance of the Event model with valid data
         const validEvent = new Event({
-            title: "Test Event",
-            author: "John Doe",
-            content: "This is a test event content",
-            category: "general"
+            title: 'Test Event',
+            author: 'John Doe',
+            content: 'This is a test event content',
+            category: 'general',
         });
-        
+
         // Mocking the save function to resolve with the event instance
         mockSave.mockResolvedValueOnce(validEvent);
-        
+
         // Saving the instance and asserting the result
         const savedEvent = await validEvent.save();
         expect(savedEvent).toMatchObject(validEvent);
@@ -38,18 +38,18 @@ describe('Event Model Test', () => {
     it('find event by id', async () => {
         // Mock data for the event we want to find
         const findEvent = {
-            _id: "5f4f5f450f3f3f3f3f3f3f3f",
-            title: "Test Event",
-            author: "John Doe",
-            content: "This is a test event content",
-            category: "general"
+            _id: '5f4f5f450f3f3f3f3f3f3f3f',
+            title: 'Test Event',
+            author: 'John Doe',
+            content: 'This is a test event content',
+            category: 'general',
         };
-        
+
         // Mocking the findById function to resolve with the event data
         mockFindById.mockResolvedValueOnce(findEvent);
-        
+
         // Searching for the event and asserting the result
-        const foundEvent = await Event.findById("5f4f5f450f3f3f3f3f3f3f3f");
+        const foundEvent = await Event.findById('5f4f5f450f3f3f3f3f3f3f3f');
         expect(foundEvent).toMatchObject(findEvent);
     });
 });
