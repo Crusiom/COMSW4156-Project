@@ -1,9 +1,9 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const jwt = require('jsonwebtoken');
-const asyncHandler = require('../middlewares/async');
-const authMiddleware = require('../middlewares/auth');
-const User = require('../models/Users');
+const asyncHandler = require('../../middlewares/async');
+const authMiddleware = require('../../middlewares/auth');
+const User = require('../../models/Users');
 
 chai.use(chaiHttp);
 const { expect } = chai;
