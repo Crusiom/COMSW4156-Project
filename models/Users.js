@@ -4,33 +4,42 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const UserSchema = new mongoose.Schema({
+    // User's name, a required field with an error message if missing.
     name: {
         type: String,
         required: [true, 'Please enter a name'],
     },
+    // User's email, a required field with a unique constraint and email format validation.
     email: {
         type: String,
-        required: [true, 'Please enter a password'],
+        required: [true, 'Please enter an email'],
         unique: true,
+        // Email format validation using a regular expression.
         match: [/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/, 'Please add a valid email'],
     },
+    // User's role, which must be either 'user' or 'publisher' with a default value of 'user'.
     role: {
         type: String,
         enum: ['user', 'publisher'],
         default: 'user',
     },
+    // User's password, a required field with a minimum length of 6 characters. It's not selected by default in queries.
     password: {
         type: String,
         required: [true, 'Please enter a password'],
         minlength: 6,
         select: false,
     },
+    // Application associated with the user, a required field.
     app: {
         type: String,
         required: true,
     },
+    // Token for resetting the password.
     resetPasswordToken: String,
+    // Expiration date for the reset password token.
     resetPasswordExpire: Date,
+    // Creation date of the user, with a default value of the current date and time.
     CreatedAt: {
         type: Date,
         default: Date.now,
