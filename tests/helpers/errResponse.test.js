@@ -1,6 +1,6 @@
 const chai = require('chai');
 const { expect } = chai;
-const ErrorResponse = require('../helpers/errResponse');
+const ErrorResponse = require('../../helpers/errResponse');
 
 describe('ErrorResponse', () => {
     it('should create an instance of ErrorResponse with message and statusCode', () => {

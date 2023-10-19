@@ -1,6 +1,6 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-const asyncHandler = require('../middlewares/async');
+const asyncHandler = require('../../middlewares/async');
 
 chai.use(chaiHttp);
 const { expect } = chai;

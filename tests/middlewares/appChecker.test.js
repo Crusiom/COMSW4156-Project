@@ -1,6 +1,6 @@
 const chai = require('chai');
-const appChecker = require('./appChecker');
-const App = require('../models/Apps');
+const appChecker = require('../../middlewares/appChecker');
+const App = require('../../models/Apps');
 
 chai.use(require('chai-http'));
 const { expect } = chai;

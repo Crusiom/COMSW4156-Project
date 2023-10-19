@@ -1,5 +1,5 @@
 const chai = require('chai');
-const advancedResults = require('./advancedResults');
+const advancedResults = require('../../middlewares/advancedResults');
 
 chai.use(require('chai-http'));
 const { expect } = chai;
