@@ -41,7 +41,7 @@ Mocha is a powerful JavaScript testing framework that simplifies the process of 
    ```shell
    npm install mocha --save-dev
    
-### Run Test
+### Run Test 1
 1. For Middlewares part run at root directory:
    ```
    mocha "middlewares/*.js"
@@ -50,5 +50,16 @@ Mocha is a powerful JavaScript testing framework that simplifies the process of 
    ```
    mocha "helpers/*.js"
    ```
+### Run Test 2
+1. For folder models and controllers, run at root directory:
+   ```
+   npm install --save-dev jest
+   ```
+   run the test:
+   ```
+   npm test
+   ```
 
+
+   
 
