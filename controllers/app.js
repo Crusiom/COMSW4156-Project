@@ -11,14 +11,14 @@ exports.createApp = asyncHandler(async (req, res, next) => {
             data: app,
         });
     } catch (err) {
-        next(err);
+        return next(err);
     }
 });
 
 exports.updateApp = asyncHandler(async (req, res, next) => {
     try {
         if (app.owner !== req.user._id) {
-            next(ErrorResponse("You cannot access this app", 401))
+            return next(ErrorResponse("You cannot access this app", 401))
         }
         const app = await App.findByIdAndUpdate(req.params.id, req.body, {
             new: true,
@@ -30,6 +30,6 @@ exports.updateApp = asyncHandler(async (req, res, next) => {
             data: app,
         });
     } catch (err) {
-        next(err);
+        return next(err);
     }
 });
