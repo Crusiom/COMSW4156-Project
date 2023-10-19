@@ -6,9 +6,9 @@ const asyncHandler = require('../middlewares/async');
 // @access    Private/admin
 exports.getUsers = asyncHandler(async (req, res, next) => {
     try {
-        res.status(200).json(res.advancedResults);
+        return res.status(200).json(res.advancedResults);
     } catch (err) {
-        next(err);
+        return next(err);
     }
 });
 
@@ -19,12 +19,12 @@ exports.getUser = asyncHandler(async (req, res, next) => {
     try {
         const user = await User.findById(req.params.id);
 
-        res.status(200).json({
+        return res.status(200).json({
             success: true,
             data: user,
         });
     } catch (err) {
-        next(err);
+        return next(err);
     }
 });
 
@@ -35,12 +35,12 @@ exports.createUser = asyncHandler(async (req, res, next) => {
     try {
         const user = await User.create(req.body);
 
-        res.status(201).json({
+        return res.status(201).json({
             success: true,
             data: user,
         });
     } catch (err) {
-        next(err);
+        return next(err);
     }
 });
 
@@ -54,12 +54,12 @@ exports.updateUser = asyncHandler(async (req, res, next) => {
             runValidators: true,
         });
 
-        res.status(201).json({
+        return res.status(201).json({
             success: true,
             data: user,
         });
     } catch (err) {
-        next(err);
+        return next(err);
     }
 });
 
@@ -70,11 +70,11 @@ exports.deleteUser = asyncHandler(async (req, res, next) => {
     try {
         await User.findByIdAndDelete(req.params.id);
 
-        res.status(200).json({
+        return res.status(200).json({
             success: true,
             data: {},
         });
     } catch (err) {
-        next(err);
+        return next(err);
     }
 });
