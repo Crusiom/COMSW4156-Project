@@ -27,7 +27,28 @@ npm run dev
 2. font wise: all in camelCase except for those defined under the `models` directory, which are capitalized.
 
 # Testing
-For Middlewares part run at root directory:
-```
-mocha "middlewares/*.js"
-```
+
+### Mocha Testing Framework
+
+Mocha is a powerful JavaScript testing framework that simplifies the process of writing and running tests for your code.
+
+### Installation
+
+1. **Node.js and npm**: Ensure you have Node.js and npm installed. You can download them from [nodejs.org](https://nodejs.org/).
+
+2. **Install Mocha**: Use npm to install Mocha as a development dependency:
+
+   ```shell
+   npm install mocha --save-dev
+   
+### Run Test
+1. For Middlewares part run at root directory:
+   ```
+   mocha "middlewares/*.js"
+   ```
+2. For helpers modules, run at root directory:
+   ```
+   mocha "helpers/*.js"
+   ```
+
+
