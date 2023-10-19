@@ -25,3 +25,9 @@ npm run dev
 1. to ensure no surprise: file/folder names that are noun-phrases will be in plural forms, e.g. controllers, Users.js ...
    Exception: ./server.js, ./middelwares/error.js, ./helpers/errResponse.js
 2. font wise: all in camelCase except for those defined under the `models` directory, which are capitalized.
+
+# Testing
+For Middlewares part run at root directory:
+```
+mocha "middlewares/*.js"
+```
