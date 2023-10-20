@@ -1,7 +1,7 @@
 # COMSW4156-Project
 
 Columbia Engineering COMS4156 Project
-## Setup (Build & run instructions)
+## Setup (Build & Run instructions)
 ### After Clone
 
 -   Install dependencies and packages
