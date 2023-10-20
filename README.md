@@ -1,7 +1,7 @@
 # COMSW4156-Project
 
 Columbia Engineering COMS4156 Project
-## Setup
+## Setup (Build & run instructions)
 ### After Clone
 
 -   Install dependencies and packages
@@ -30,8 +30,8 @@ npm run dev
 2. font wise: all in camelCase except for those defined under the `models` directory, which are capitalized.
    
 ## 	Style Compliant
-
-## Testing
+## System Tests Corresponding to API
+## Unit Tests (test instruction)
 - The project includes a structured unit testing framework to ensure code correctness and reliability. Unit tests are organized and can be executed with a single command.
 - All tests for our code are in the /tests directory, run at root directory:
 ```
