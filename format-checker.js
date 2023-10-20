@@ -18,27 +18,27 @@ function getFormattedTimestamp() {
 function logInfo(message) {
   const timestamp = getFormattedTimestamp();
   const logLine = `[INFO]---${timestamp}---${message}`;
-  console.log(logLine.padEnd(MAX_LINE_LENGTH, '-'));
+  console.log(logLine.replace(/ /g, '').padEnd(MAX_LINE_LENGTH, '-'));
 }
 
 function logError(message) {
   const timestamp = getFormattedTimestamp();
   const logLine = `[ERROR]---${timestamp}---${message}`;
-  console.error(logLine.padEnd(MAX_LINE_LENGTH, '-'));
+  console.error(logLine.replace(/ /g, '').padEnd(MAX_LINE_LENGTH, '-'));
 }
 
 function logIndentedInfo(message, indentationLevel = 0) {
   const timestamp = getFormattedTimestamp();
   const indentation = ' '.repeat(indentationLevel * 2);
   const logLine = `[INFO]---${timestamp}---${indentation}${message}`;
-  console.log(logLine.padEnd(MAX_LINE_LENGTH, '-'));
+  console.log(logLine.replace(/ /g, '').padEnd(MAX_LINE_LENGTH, '-'));
 }
 
 function logIndentedError(message, indentationLevel = 0) {
   const timestamp = getFormattedTimestamp();
   const indentation = ' '.repeat(indentationLevel * 2);
   const logLine = `[ERROR]---${timestamp}---${indentation}${message}`;
-  console.error(logLine.padEnd(MAX_LINE_LENGTH, '-'));
+  console.error(logLine.replace(/ /g, '').padEnd(MAX_LINE_LENGTH, '-'));
 }
 
 function getAllFiles(directoryPath, fileList, indentationLevel = 0) {
