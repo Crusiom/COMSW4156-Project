@@ -30,6 +30,28 @@ npm run dev
 2. font wise: all in camelCase except for those defined under the `models` directory, which are capitalized.
    
 ## 	Style Compliant
+To run the style checker:
+```
+node format-checker.js
+```
+A sample report by running the style checker is: 
+```
+[INFO]---2023-10-19T21:10:25Z---    Checking files in directory: tests/helpers----------------------
+[INFO]---2023-10-19T21:10:25Z---    Checking file: tests/helpers/errResponse.test.js----------------
+[INFO]---2023-10-19T21:10:25Z---    Checking files in directory: tests/middlewares------------------
+[INFO]---2023-10-19T21:10:25Z---    Checking file: tests/middlewares/advancedResults.test.js--------
+[INFO]---2023-10-19T21:10:25Z---    Checking file: tests/middlewares/appChecker.test.js-------------
+[INFO]---2023-10-19T21:10:25Z---    Checking file: tests/middlewares/async.test.js------------------
+[INFO]---2023-10-19T21:10:25Z---    Checking file: tests/middlewares/auth.test.js-------------------
+[INFO]---2023-10-19T21:10:25Z---    Checking files in directory: tests/models-----------------------
+[INFO]---2023-10-19T21:10:25Z---    Checking file: tests/models/Apps.test.js------------------------
+[INFO]---2023-10-19T21:10:25Z---    Checking file: tests/models/Events.test.js----------------------
+[INFO]---2023-10-19T21:10:25Z---    Checking file: tests/models/Users.test.js-----------------------
+[INFO]---2023-10-19T21:10:25Z---You have 0 format errors--------------------------------------------
+[INFO]---2023-10-19T21:10:25Z---BUILD SUCCESS-------------------------------------------------------
+[INFO]---2023-10-19T21:10:25Z---Total time: 0.160 s-------------------------------------------------
+[INFO]---2023-10-19T21:10:25Z---Finished at: 2023-10-19T21:10:25Z-----------------------------------
+```
 ## System Tests Corresponding to API
 
 Utilized Postman for testing. Refer to Test.postman_collection.json for the test collection.
