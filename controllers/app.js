@@ -30,8 +30,12 @@ exports.createApp = asyncHandler(async (req, res, next) => {
 exports.updateApp = asyncHandler(async (req, res, next) => {
     try {
         // Check if the owner of the app matches the currently authenticated user
-        if (app.owner !== req.user._id) {
-            return next(ErrorResponse('You cannot access this app', 401));
+        let eixstingApp = await App.findOne({ _id: req.params.id });
+
+        const user_id = req.user._id.toString();
+
+        if (eixstingApp.owner !== user_id) {
+            return next(new ErrorResponse('You cannot access this app', 401));
         }
 
         // Find and update the app with the given ID using the data from the request body

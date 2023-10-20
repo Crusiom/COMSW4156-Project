@@ -18,7 +18,7 @@ const errorHandler = (err, req, res, next) => {
         // Mongoose Duplicate id
         if (err.code === 11000) {
             const message = 'Duplicate content found. Please try something new';
-            error = new ErrorResponse(message, 400);
+            error = new ErrorResponse(message, 403);
         }
 
         // Mongoose validation error

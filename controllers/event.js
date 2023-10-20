@@ -9,6 +9,8 @@ exports.createEvent = asyncHandler(async (req, res, next) => {
         // Set the app of the event to the app of the currently authenticated user
         req.body.app = req.user.app;
 
+        req.body.author = req.user._id;
+
         // Create a new event using the data from the request body
         const event = await Event.create(req.body);
 

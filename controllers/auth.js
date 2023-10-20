@@ -61,10 +61,7 @@ exports.login = asyncHandler(async (req, res, next) => {
 // @access    Public
 exports.logout = asyncHandler(async (req, res, next) => {
     try {
-        res.cookie('token', 'none', {
-            expires: new Date(Date.now() + 10 * 1000),
-            httpOnly: true,
-        });
+        res.clearCookie('token');
 
         return res.status(200).json({
             success: true,
