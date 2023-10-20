@@ -36,21 +36,18 @@ node format-checker.js
 ```
 A sample report by running the style checker is: 
 ```
-[INFO]---2023-10-19T21:10:25Z---    Checking files in directory: tests/helpers----------------------
-[INFO]---2023-10-19T21:10:25Z---    Checking file: tests/helpers/errResponse.test.js----------------
-[INFO]---2023-10-19T21:10:25Z---    Checking files in directory: tests/middlewares------------------
-[INFO]---2023-10-19T21:10:25Z---    Checking file: tests/middlewares/advancedResults.test.js--------
-[INFO]---2023-10-19T21:10:25Z---    Checking file: tests/middlewares/appChecker.test.js-------------
-[INFO]---2023-10-19T21:10:25Z---    Checking file: tests/middlewares/async.test.js------------------
-[INFO]---2023-10-19T21:10:25Z---    Checking file: tests/middlewares/auth.test.js-------------------
-[INFO]---2023-10-19T21:10:25Z---    Checking files in directory: tests/models-----------------------
-[INFO]---2023-10-19T21:10:25Z---    Checking file: tests/models/Apps.test.js------------------------
-[INFO]---2023-10-19T21:10:25Z---    Checking file: tests/models/Events.test.js----------------------
-[INFO]---2023-10-19T21:10:25Z---    Checking file: tests/models/Users.test.js-----------------------
-[INFO]---2023-10-19T21:10:25Z---You have 0 format errors--------------------------------------------
-[INFO]---2023-10-19T21:10:25Z---BUILD SUCCESS-------------------------------------------------------
-[INFO]---2023-10-19T21:10:25Z---Total time: 0.160 s-------------------------------------------------
-[INFO]---2023-10-19T21:10:25Z---Finished at: 2023-10-19T21:10:25Z-----------------------------------
+[INFO]---2023-10-19T21:18:46Z---Checkingfile:tests/middlewares/advancedResults.test.js--------------
+[INFO]---2023-10-19T21:18:46Z---Checkingfile:tests/middlewares/appChecker.test.js-------------------
+[INFO]---2023-10-19T21:18:46Z---Checkingfile:tests/middlewares/async.test.js------------------------
+[INFO]---2023-10-19T21:18:46Z---Checkingfile:tests/middlewares/auth.test.js-------------------------
+[INFO]---2023-10-19T21:18:46Z---Checkingfilesindirectory:tests/models-------------------------------
+[INFO]---2023-10-19T21:18:46Z---Checkingfile:tests/models/Apps.test.js------------------------------
+[INFO]---2023-10-19T21:18:46Z---Checkingfile:tests/models/Events.test.js----------------------------
+[INFO]---2023-10-19T21:18:46Z---Checkingfile:tests/models/Users.test.js-----------------------------
+[INFO]---2023-10-19T21:18:46Z---Youhave0formaterrors------------------------------------------------
+[INFO]---2023-10-19T21:18:46Z---BUILDSUCCESS--------------------------------------------------------
+[INFO]---2023-10-19T21:18:46Z---Totaltime:0.139s----------------------------------------------------
+[INFO]---2023-10-19T21:18:46Z---Finishedat:2023-10-19T21:18:46Z-------------------------------------
 ```
 ## System Tests Corresponding to API
 
