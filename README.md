@@ -1,7 +1,7 @@
 # COMSW4156-Project
 
 Columbia Engineering COMS4156 Project
-
+## Setup
 ### After Clone
 
 -   Install dependencies and packages
@@ -20,14 +20,18 @@ npm run dev
 
 **Press Ctrl + C**
 
-# Naming
+## API Documentation
+
+## System 
+## Naming
 
 1. to ensure no surprise: file/folder names that are noun-phrases will be in plural forms, e.g. controllers, Users.js ...
    Exception: ./server.js, ./middelwares/error.js, ./helpers/errResponse.js
 2. font wise: all in camelCase except for those defined under the `models` directory, which are capitalized.
-# 	Style Compliant
+   
+## 	Style Compliant
 
-# Testing
+## Testing
 - The project includes a structured unit testing framework to ensure code correctness and reliability. Unit tests are organized and can be executed with a single command.
 - All tests for our code are in the /tests directory, run at root directory:
 ```
