@@ -31,6 +31,9 @@ npm run dev
    
 ## 	Style Compliant
 ## System Tests Corresponding to API
+
+Utilized Postman for testing. Refer to Test.postman_collection.json for the test collection.
+
 ## Unit Tests (test instruction)
 - The project includes a structured unit testing framework to ensure code correctness and reliability. Unit tests are organized and can be executed with a single command.
 - All tests for our code are in the /tests directory, run at root directory:
