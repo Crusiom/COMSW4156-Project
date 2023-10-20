@@ -22,7 +22,7 @@ npm run dev
 
 ## API Documentation
 
-## System 
+
 ## Naming
 
 1. to ensure no surprise: file/folder names that are noun-phrases will be in plural forms, e.g. controllers, Users.js ...
