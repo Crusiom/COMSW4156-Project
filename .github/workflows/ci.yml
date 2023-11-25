@@ -9,11 +9,11 @@ on:
 jobs:
   build:
 
-    runs-on:  macos-latest
+    runs-on: macos-latest
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x]
+        node-version: [21.x]  # Set this to match your local Node version
 
     steps:
     - uses: actions/checkout@v3
@@ -23,7 +23,8 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-    - run: npm run dev
+    - name: Run the server
+      run: npm run dev &
       env:
         CI: true
     - name: Run style checker
