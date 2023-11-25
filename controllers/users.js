@@ -1,6 +1,5 @@
 const User = require('../models/Users');
 const asyncHandler = require('../middlewares/async');
-const ErrorResponse = require('../helpers/errResponse');
 
 // @desc      Get all user profiles (the data fields other than name/email/passwords)
 // @routes    GET /api/v1/users
@@ -19,10 +18,6 @@ exports.getUsers = asyncHandler(async (req, res, next) => {
 exports.getUser = asyncHandler(async (req, res, next) => {
     try {
         const user = await User.findById(req.params.id);
-
-        if (!user) {
-            return next(new ErrorResponse('Resource Not Found', 404));
-        }
 
         return res.status(200).json({
             success: true,
@@ -73,11 +68,7 @@ exports.updateUser = asyncHandler(async (req, res, next) => {
 // @access    Private/admin
 exports.deleteUser = asyncHandler(async (req, res, next) => {
     try {
-        const user = await User.findByIdAndDelete(req.params.id, { new: true });
-
-        if (!user) {
-            return next(new ErrorResponse('Resource Not Found', 404));
-        }
+        await User.findByIdAndDelete(req.params.id);
 
         return res.status(200).json({
             success: true,

@@ -23,7 +23,7 @@ npm run dev
 
 ## API Documentation
 
-
+## System 
 ## Naming
 
 1. to ensure no surprise: file/folder names that are noun-phrases will be in plural forms, e.g. controllers, Users.js ...
@@ -31,30 +31,8 @@ npm run dev
 2. font wise: all in camelCase except for those defined under the `models` directory, which are capitalized.
    
 ## 	Style Compliant
-To run the style checker:
-```
-node format-checker.js
-```
-A sample report by running the style checker is: 
-```
-[INFO]---2023-10-19T21:18:46Z---Checkingfile:tests/middlewares/advancedResults.test.js--------------
-[INFO]---2023-10-19T21:18:46Z---Checkingfile:tests/middlewares/appChecker.test.js-------------------
-[INFO]---2023-10-19T21:18:46Z---Checkingfile:tests/middlewares/async.test.js------------------------
-[INFO]---2023-10-19T21:18:46Z---Checkingfile:tests/middlewares/auth.test.js-------------------------
-[INFO]---2023-10-19T21:18:46Z---Checkingfilesindirectory:tests/models-------------------------------
-[INFO]---2023-10-19T21:18:46Z---Checkingfile:tests/models/Apps.test.js------------------------------
-[INFO]---2023-10-19T21:18:46Z---Checkingfile:tests/models/Events.test.js----------------------------
-[INFO]---2023-10-19T21:18:46Z---Checkingfile:tests/models/Users.test.js-----------------------------
-[INFO]---2023-10-19T21:18:46Z---Youhave0formaterrors------------------------------------------------
-[INFO]---2023-10-19T21:18:46Z---BUILDSUCCESS--------------------------------------------------------
-[INFO]---2023-10-19T21:18:46Z---Totaltime:0.139s----------------------------------------------------
-[INFO]---2023-10-19T21:18:46Z---Finishedat:2023-10-19T21:18:46Z-------------------------------------
-```
-## System Tests Corresponding to API
 
-Utilized Postman for testing. Refer to Test.postman_collection.json for the test collection.
-
-## Unit Tests (test instruction)
+## Testing
 - The project includes a structured unit testing framework to ensure code correctness and reliability. Unit tests are organized and can be executed with a single command.
 - All tests for our code are in the /tests directory, run at root directory:
 ```

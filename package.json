@@ -11,9 +11,7 @@
         "test": "jest",
         "lint": "eslint . --ext .js",
         "lint:fix": "eslint --fix ./**/*.js",
-        "format": "prettier --write --config ./.prettierrc \"./**/*.{js,md,json}\"",
-        "setup": "npm i",
-        "clear": "rmdir /s /q node_modules"
+        "format": "prettier --write --config ./.prettierrc \"./**/*.{js,md,json}\""
     },
     "keywords": [],
     "author": "",
