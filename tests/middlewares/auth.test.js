@@ -1,56 +1,75 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const jwt = require('jsonwebtoken');
-const asyncHandler = require('../../middlewares/async');
+const sinon = require('sinon');
 const authMiddleware = require('../../middlewares/auth');
 const User = require('../../models/Users');
+const ErrorResponse = require('../../helpers/errResponse');
+process.env.JWT_SECRET = 'your_secret_key';
 
 chai.use(chaiHttp);
 const { expect } = chai;
 
-describe('protect Middleware', () => {
-    //   it('should protect a route with a valid token', async () => {
-    //     // Mock user data and a valid token
-    //     const user = {
-    //       _id: 'validUserId',
-    //       username: 'testuser',
-    //       role: 'user',
-    //     };
+describe('auth Middleware', () => {
+    let mockReq, mockRes, mockNext;
 
-    //     const token = jwt.sign({ id: user._id }, 'secret', {
-    //       expiresIn: '1h',
-    //     });
-
-    //     // Mock request with a valid token
-    //     const mockReq = {
-    //       headers: {
-    //         authorization: `Bearer ${token}`,
-    //       },
-    //     };
-    //     const mockRes = {};
-    //     const mockNext = () => {};
-
-    //     // Call the protect middleware with the mock request
-    //     await authMiddleware.protect(mockReq, mockRes, mockNext);
-
-    //     // Ensure that req.user is set and contains the user data
-    //     expect(mockReq.user).to.deep.equal(user);
-    //   });
+    beforeEach(() => {
+        mockReq = {
+            headers: {},
+            cookies: {},
+        };
+        mockRes = {};
+        mockNext = sinon.spy();
+    });
 
     it('should return an error for an invalid or missing token', async () => {
-        // Mock request without a valid token
-        const mockReq = {
-            headers: {},
-        };
-        const mockRes = {};
-        const mockNext = () => {};
+        await authMiddleware.protect(mockReq, mockRes, mockNext);
+        expect(mockNext.firstCall.args[0]).to.be.an.instanceof(ErrorResponse);
+        expect(mockNext.firstCall.args[0].statusCode).to.equal(401);
+    });
 
-        // Call the protect middleware with the mock request
-        try {
-            await authMiddleware.protect(mockReq, mockRes, mockNext);
-        } catch (err) {
-            // Ensure that an error response is generated
-            expect(err).to.be.an.instanceof(ErrorResponse);
-        }
+    it('should verify token from authorization header and allow access', async () => {
+        const token = jwt.sign({ id: 'validUserId' }, process.env.JWT_SECRET);
+        mockReq.headers.authorization = `Bearer ${token}`;
+
+        User.findById = sinon.stub().returns(Promise.resolve({ id: 'validUserId', role: 'user' }));
+
+        await authMiddleware.protect(mockReq, mockRes, mockNext);
+        expect(mockNext.calledOnce).to.be.true;
+    });
+
+    it('should verify token from cookies and allow access', async () => {
+        const token = jwt.sign({ id: 'validUserId' }, process.env.JWT_SECRET);
+        mockReq.cookies.token = token;
+
+        User.findById = sinon.stub().returns(Promise.resolve({ id: 'validUserId', role: 'user' }));
+
+        await authMiddleware.protect(mockReq, mockRes, mockNext);
+        expect(mockNext.calledOnce).to.be.true;
+    });
+
+    it('should return an error for an invalid token', async () => {
+        mockReq.headers.authorization = 'Bearer invalidToken';
+
+        await authMiddleware.protect(mockReq, mockRes, mockNext);
+        expect(mockNext.firstCall.args[0]).to.be.an.instanceof(ErrorResponse);
+        expect(mockNext.firstCall.args[0].statusCode).to.equal(401);
+    });
+
+    it('should allow access for authorized roles', async () => {
+        mockReq.user = { role: 'admin' };
+
+        const authorizeMiddleware = authMiddleware.authorize('admin', 'user');
+        await authorizeMiddleware(mockReq, mockRes, mockNext);
+        expect(mockNext.calledOnce).to.be.true;
+    });
+
+    it('should return an error for unauthorized roles', async () => {
+        mockReq.user = { role: 'guest' };
+
+        const authorizeMiddleware = authMiddleware.authorize('admin', 'user');
+        await authorizeMiddleware(mockReq, mockRes, mockNext);
+        expect(mockNext.firstCall.args[0]).to.be.an.instanceof(ErrorResponse);
+        expect(mockNext.firstCall.args[0].statusCode).to.equal(403);
     });
 });
