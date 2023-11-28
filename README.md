@@ -64,7 +64,11 @@ npm run dev
 
 ### Run Branch Coverage in Jest
 - To see the current unit test coverage, run: ```npm test -- --coverage``````
-
+- Test Result:
+  - Controllers Module Branch Coverage:
+  - Middlewares Module Branch Coverage: 100%
+  - Helper Module Branch Coverage: 100%
+  - Models Module Branch Coverage:
 
 ## API Endpoints
 
