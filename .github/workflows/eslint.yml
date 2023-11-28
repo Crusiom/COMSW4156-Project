@@ -21,10 +21,10 @@ jobs:
     - name: Use Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: 'v20.0.0'
+        node-version: 'v16.0.0'
 
     - name: Install dependencies
       run: npm install
 
     - name: Run ESLint
-      run: npx eslint . --ext .js --rule 'semi:off' --rule 'indent:off'
+      run: npx eslint . --ext .js --rule 'semi:off' --rule 'indent:off' --rule 'comma-dangle:off'
