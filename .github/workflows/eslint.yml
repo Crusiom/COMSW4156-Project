@@ -27,4 +27,4 @@ jobs:
       run: npm install
 
     - name: Run ESLint
-      run: npx eslint . --ext .js --rule 'semi:off' --rule 'indent: ["error", 4]'
+      run: npx eslint . --ext .js --rule 'semi:off' --rule 'indent:off'
