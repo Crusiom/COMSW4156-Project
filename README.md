@@ -3,6 +3,7 @@
 Columbia Engineering COMS4156 Project
 
 ## Setup (Build & Run instructions)
+
 ### After Clone
 
 -   Install dependencies and packages
@@ -23,19 +24,22 @@ npm run dev
 
 ## API Documentation
 
-## System 
+## System
+
 ## Naming
 
 1. to ensure no surprise: file/folder names that are noun-phrases will be in plural forms, e.g. controllers, Users.js ...
    Exception: ./server.js, ./middelwares/error.js, ./helpers/errResponse.js
 2. font wise: all in camelCase except for those defined under the `models` directory, which are capitalized.
-   
-## 	Style Compliant
+
+## Style Compliant
 
 ## Testing
-- The project includes a structured unit testing framework to ensure code correctness and reliability. Unit tests are organized and can be executed with a single command.
-- All tests for our code are in the /tests directory, run at root directory:
-```
+
+-   The project includes a structured unit testing framework to ensure code correctness and reliability. Unit tests are organized and can be executed with a single command.
+-   All tests for our code are in the /tests directory, run at root directory:
+
+```````
 .
 ├── controllers
 │   ├── app.test.js
@@ -53,13 +57,15 @@ npm run dev
     ├── Apps.test.js
     ├── Events.test.js
     └── Users.test.js
-
-```
+### Unit Testing
 - To run the test: ```npm test```
 - Setup ```npm i```
 - To teardown temporary files: ```rmdir /s /q node modules```
 
-  
+### Run Branch Coverage in Jest
+- To see the current unit test coverage, run: ```npm test -- --coverage``````
+
+
 ## API Endpoints
 
 **App**
@@ -111,7 +117,7 @@ npm run dev
     Log a user out and clear cookies
   - Response Codes:
     - ```200: Success```
-      
+
 - `GET /api/v1/auth/me`
   - Description:
     Retrieves the details of the currently authenticated user
@@ -136,7 +142,7 @@ npm run dev
 
 - `PUT /api/v1/events/:id`
   - Description:
-    Update an existing event that falls under a certain application. 
+    Update an existing event that falls under a certain application.
   - Request Body:
     - `id:string`
   - Response Codes:
@@ -146,7 +152,7 @@ npm run dev
 
 - `PUT /api/v1/events/:id`
   - Description:
-    Delete an existing event that falls under a certain application. 
+    Delete an existing event that falls under a certain application.
   - Request Body:
     - `id:string`
   - Response Codes:
@@ -162,7 +168,7 @@ npm run dev
   - Response Codes:
     - ```200: Success```
     - ```401: Not authorized to get events```
-  
+
 **Users**
 
 - `GET /api/v1/users`
@@ -195,7 +201,7 @@ npm run dev
   - Response Codes:
     - ```200: Success```
     - ```404: Resource not found```
-   
+
 - `PUT /api/v1/users/:id`
   - Description:
     Update user's profile (update a field other than name/email/passwords)
@@ -223,3 +229,4 @@ npm run dev
 
 
 
+```````
