@@ -36,11 +36,11 @@ const AppSchema = new mongoose.Schema({
     },
 });
 
-// when an app is deleted, delete all events under it
-AppSchema.pre('remove', async function (next) {
-    console.log(`Events being removed from app ${this._id}`);
-    await this.model('Events').deleteMany({ app: this._id });
-    next();
-});
+// // when an app is deleted, delete all events under it
+// AppSchema.pre('remove', async function (next) {
+//     console.log(`Events being removed from app ${this._id}`);
+//     await this.model('Events').deleteMany({ app: this._id });
+//     next();
+// });
 
 module.exports = mongoose.model('Apps', AppSchema);

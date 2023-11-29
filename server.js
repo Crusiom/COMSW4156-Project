@@ -15,6 +15,7 @@ const auth = require('./routes/auth');
 const users = require('./routes/users');
 const apps = require('./routes/apps');
 const events = require('./routes/events');
+const reviews = require('./routes/reviews');
 
 // Create an Express application
 const app = express();
@@ -36,6 +37,7 @@ app.use('/api/v1/auth', auth);
 app.use('/api/v1/users', users);
 app.use('/api/v1/apps', apps);
 app.use('/api/v1/events', events);
+app.use('/api/v1/reviews', reviews);
 
 // Use the error handling middleware to handle and respond to errors
 app.use(errorHandler);
