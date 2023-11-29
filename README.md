@@ -174,6 +174,60 @@ npm run dev
     - ```200: Success```
     - ```401: Not authorized to get events```
 
+**Review**
+- `POST /api/v1/reviews`
+  - Description:
+    Create a new review that falls under a certain event. e.x. a therapy event of a medicare app.
+  - Request Headers:
+    - `Authorizatoin: string starting with 'Bearer'`
+  - Request Body:
+    - `title:string`
+    - `author:string`
+    - `content:string`
+    - `event:string`
+    - `CreatedAt: DateTime`
+  - Response Codes:
+    - ```200: Success```
+    - ```400: Unexpected json syntax in request body```
+    - ```401: Not authorized to create reviews```
+
+- `PUT /api/v1/reviews/:id`
+  - Description:
+    Update an existing review that falls under a certain event.
+  - Request Params:
+    - `id:string`
+  - Request Headers:
+    - `Authorizatoin: string starting with 'Bearer'`
+  - Request Body:
+    - `title:string`
+    - `author:string`
+    - `content:string`
+    - `event:string`
+    - `CreatedAt: DateTime`
+  - Response Codes:
+    - ```201: Success```
+    - ```401: Not authorized to update reviews```
+    - ```404: Resource not found```
+
+- `PUT /api/v1/reviews/:id`
+  - Description:
+    Delete an existing review that falls under a certain event.
+  - Request Params:
+    - `id:string`
+  - Request Headers:
+    - `Authorizatoin: string starting with 'Bearer'`
+  - Request Body:
+    - `title:string`
+    - `author:string`
+    - `content:string`
+    - `event:string`
+    - `CreatedAt: DateTime`
+  - Response Codes:
+    - ```200: Success```
+    - ```401: Not authorized to delete reviews```
+    - ```404: Resource not found```
+
+      
 **Users**
 
 - `GET /api/v1/users`
