@@ -39,7 +39,7 @@ npm run dev
 -   The project includes a structured unit testing framework to ensure code correctness and reliability. Unit tests are organized and can be executed with a single command.
 -   All tests for our code are in the /tests directory, run at root directory:
 
-```````
+```
 .
 ├── controllers
 │   ├── app.test.js
@@ -57,13 +57,14 @@ npm run dev
     ├── Apps.test.js
     ├── Events.test.js
     └── Users.test.js
+```
 ### Unit Testing
 - To run the test: ```npm test```
 - Setup ```npm i```
 - To teardown temporary files: ```rmdir /s /q node modules```
 
 ### Run Branch Coverage in Jest
-- To see the current unit test coverage, run: ```npm test -- --coverage``````
+- To see the current unit test coverage, run: ```npm test -- --coverage```
 - Test Result:
   - Controllers Module Branch Coverage:
   - Middlewares Module Branch Coverage: 100%
