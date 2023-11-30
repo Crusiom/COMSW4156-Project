@@ -184,6 +184,15 @@ npm run dev
     - ```401: Not authorized to get events```
 
 **Review**
+- `GET /api/v1/reviews`
+  - Description:
+    Get a list of all reviews that fall under the current event of the user
+  - Request Headers:
+    - `Authorizatoin: string starting with 'Bearer'`
+  - Response Codes:
+    - ```200: Success```
+    - ```401: Not authorized to get events```
+
 - `POST /api/v1/reviews`
   - Description:
     Create a new review that falls under a certain event. e.x. a therapy event of a medicare app.
