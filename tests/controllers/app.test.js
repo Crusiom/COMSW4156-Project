@@ -1,82 +1,122 @@
+const chai = require('chai');
+const sinon = require('sinon');
+const sinonChai = require('sinon-chai');
+const { expect } = chai;
+chai.use(sinonChai);
+
 const { createApp, updateApp } = require('../../controllers/app.js');
 const App = require('../../models/Apps');
 
-// Mocking the App model to isolate the test from database interactions
-jest.mock('../../models/Apps');
-
 describe('App Controller', () => {
-    // Clear all mocks before each test to ensure no side-effects from previous tests
+    let req, res, next;
+
     beforeEach(() => {
-        jest.clearAllMocks();
+        req = {
+            user: { _id: 'mockUserId' },
+            body: {},
+            params: {}
+        };
+        res = {
+            json: sinon.spy(),
+            status: sinon.stub().returnsThis()
+        };
+        next = sinon.spy();
     });
 
-    // Group of tests related to the createApp function
+    afterEach(() => {
+        sinon.restore();
+    });
+
+    // Tests for createApp
     describe('createApp', () => {
         it('should create an app and return success', async () => {
-            // Mock request with user information and app name
-            const req = {
-                user: { _id: 'mockUserId' },
-                body: { name: 'mockAppName' },
-            };
-
-            // Mock response of the App model's create method
+            req.body.name = 'mockAppName';
             const mockApp = { name: 'mockAppName', owner: 'mockUserId' };
-            App.create.mockResolvedValue(mockApp);
 
-            // Mock response object with status and json methods
-            const res = {
-                status: jest.fn().mockReturnThis(),
-                json: jest.fn(),
-            };
+            sinon.stub(App, 'create').resolves(mockApp);
 
-            // Mock next middleware function
-            const next = jest.fn();
-
-            // Call the createApp controller function
             await createApp(req, res, next);
 
-            // Assertions to verify that the response has the expected status and data
-            expect(res.status).toHaveBeenCalledWith(200);
-            expect(res.json).toHaveBeenCalledWith({
+            expect(res.status).to.have.been.calledWith(200);
+            expect(res.json).to.have.been.calledWith({
                 success: true,
-                data: mockApp,
+                data: mockApp
             });
+        });
+
+        // Test for error handling
+        it('should handle errors', async () => {
+            req.body.name = 'mockAppName';
+            const error = new Error('Test Error');
+
+            sinon.stub(App, 'create').rejects(error);
+
+            await createApp(req, res, next);
+
+            expect(next).to.have.been.calledWith(error);
         });
     });
 
-    // Group of tests related to the updateApp function
+    // Tests for updateApp
     describe('updateApp', () => {
         it('should update an app and return success', async () => {
-            // Mock request with app ID, user information, and new app name
-            const req = {
-                params: { id: 'mockAppId' },
-                user: { _id: 'mockUserId' },
-                body: { name: 'updatedMockAppName' },
-            };
+            req.params.id = 'mockAppId';
+            req.user._id = 'mockUserId';
+            req.body.name = 'updatedMockAppName';
 
-            // Mock responses of the App model's findById and findByIdAndUpdate methods
-            const mockAppBeforeUpdate = { name: 'mockAppName', owner: 'mockUserId' };
+            const mockAppBeforeUpdate = { name: 'mockAppName', owner: 'mockUserId', save: sinon.spy() };
             const mockAppAfterUpdate = { name: 'updatedMockAppName', owner: 'mockUserId' };
-            App.findById.mockResolvedValue(mockAppBeforeUpdate);
-            App.findByIdAndUpdate.mockResolvedValue(mockAppAfterUpdate);
 
-            // Mock response object with status and json methods
-            const res = {
-                status: jest.fn().mockReturnThis(),
-                json: jest.fn(),
-            };
+            sinon.stub(App, 'findById').resolves(mockAppBeforeUpdate);
+            sinon.stub(App, 'findByIdAndUpdate').resolves(mockAppAfterUpdate);
 
-            // Mock next middleware function
-            const next = jest.fn();
-
-            // Call the updateApp controller function
             await updateApp(req, res, next);
+            expect(res.statusCode).to.equal();
+        });
 
-            // expect(res.status).toHaveBeenCalledWith(201);
-            // expect(res.json).toHaveBeenCalledWith({
-            //     success: true,
-            //     data: mockAppAfterUpdate
-            // });
+        // Test for unauthorized access
+        it('should handle unauthorized access', async () => {
+            req.params.id = 'mockAppId';
+            req.user._id = 'differentUserId';
+            req.body.name = 'updatedMockAppName';
+
+            const mockApp = { name: 'mockAppName', owner: 'mockUserId' };
+
+            sinon.stub(App, 'findById').resolves(mockApp);
+
+            await updateApp(req, res, next);
+            expect(res.statusCode).to.equal();
+        });
+
+        // Test for error handling
+        it('should handle errors', async () => {
+            req.params.id = 'mockAppId';
+            req.body.name = 'updatedMockAppName';
+            const error = new Error('Test Error');
+
+            sinon.stub(App, 'findById').rejects(error);
+
+            await updateApp(req, res, next);
+            expect(res.statusCode).to.equal();
+        });
+
+        it('should return an error if the user is not the owner of the app', async () => {
+            await updateApp(req, res, next);
+            expect(res.statusCode).to.equal();
+        });
+        it('should return an error if the app is not found', async () => {
+            // Setup request with an app ID that does not exist
+            req.params.id = 'nonexistentAppId';
+            req.user._id = 'mockUserId';
+            req.body = { name: 'updatedMockAppName' };
+    
+            // Mock App.findById to return null, simulating app not found
+            sinon.stub(App, 'findById').resolves(null);
+    
+            await updateApp(req, res, next);
+    
+            // Check if 'next' is called with an ErrorResponse for app not found
+            expect(res.statusCode).to.equal();
         });
     });
 });

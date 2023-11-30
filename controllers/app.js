@@ -27,15 +27,50 @@ exports.createApp = asyncHandler(async (req, res, next) => {
 // @desc      Update an existing application
 // @routes    PUT /api/v1/apps/:id
 // @access    Private
+// exports.updateApp = asyncHandler(async (req, res, next) => {
+//     try {
+//         // Check if the owner of the app matches the currently authenticated user
+//         if (app.owner !== req.user._id) {
+//             return next(ErrorResponse('You cannot access this app', 401));
+//         }
+
+//         // Find and update the app with the given ID using the data from the request body
+//         const app = await App.findByIdAndUpdate(req.params.id, req.body, {
+//             new: true,
+//             runValidators: true,
+//         });
+
+//         // Respond with a success status and the updated app data
+//         res.status(201).json({
+//             success: true,
+//             data: app,
+//         });
+//     } catch (err) {
+//         // Pass any encountered errors to the error-handling middleware
+//         return next(err);
+//     }
+// });
+// const App = require('../models/Apps');
+// const asyncHandler = require('../middlewares/async');
+// const ErrorResponse = require('../helpers/errResponse');
+
 exports.updateApp = asyncHandler(async (req, res, next) => {
     try {
+        // Find the app with the given ID
+        const app = await App.findById(req.params.id);
+
+        // Check if the app exists
+        if (!app) {
+            return next(new ErrorResponse('App not found', 404));
+        }
+
         // Check if the owner of the app matches the currently authenticated user
-        if (app.owner !== req.user._id) {
-            return next(ErrorResponse('You cannot access this app', 401));
+        if (app.owner.toString() !== req.user._id.toString()) {
+            return next(new ErrorResponse('You cannot access this app', 401));
         }
 
         // Find and update the app with the given ID using the data from the request body
-        const app = await App.findByIdAndUpdate(req.params.id, req.body, {
+        const updatedApp = await App.findByIdAndUpdate(req.params.id, req.body, {
             new: true,
             runValidators: true,
         });
@@ -43,7 +78,7 @@ exports.updateApp = asyncHandler(async (req, res, next) => {
         // Respond with a success status and the updated app data
         res.status(201).json({
             success: true,
-            data: app,
+            data: updatedApp,
         });
     } catch (err) {
         // Pass any encountered errors to the error-handling middleware
