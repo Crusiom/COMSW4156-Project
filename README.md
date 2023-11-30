@@ -66,10 +66,15 @@ npm run dev
 ### Run Branch Coverage in Jest
 - To see the current unit test coverage, run: ```npm test -- --coverage```
 - Test Result:
-  - Controllers Module Branch Coverage:
+  - Controllers Module Branch Coverage: 75%
   - Middlewares Module Branch Coverage: 100%
   - Helper Module Branch Coverage: 100%
-  - Models Module Branch Coverage:
+  - Models Module Branch Coverage: 50%
+  - Overall: 86.84%
+ <img width="589" alt="Screenshot 2023-11-29 at 7 40 36 PM" src="https://github.com/Crusiom/COMSW4156-Project/assets/73783044/e251e2e1-841f-4ffd-a431-52c25c6b2aa5">
+
+### External Integration Tests
+- This project does not use any third-party libraries or databases.
 
 ## API Endpoints
 
