@@ -76,6 +76,11 @@ npm run dev
 ### External Integration Tests
 - This project does not use any third-party libraries or databases.
 
+### Bug Finder
+- This project uses ESLint as our static analysis tool to check the entire codebase for syntax errors, and potential bugs, and to enforce a consistent code style. This helps maintain code quality and readability.
+- The bug finder is integrated ESLint into our Continuous Integration (CI) pipeline. (in workflows/eslint.yml)
+- Test Results: all tests passed.
+
 ## API Endpoints
 
 **App**
