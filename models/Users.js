@@ -35,10 +35,6 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    event: {
-        type: String,
-        required: true,
-    },
     // Token for resetting the password.
     resetPasswordToken: String,
     // Expiration date for the reset password token.
