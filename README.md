@@ -22,6 +22,9 @@ npm run dev
 
 **Press Ctrl + C**
 
+## Third Party Code
+This project does not use any third-party code.
+
 ## API Documentation
 
 ## System
@@ -66,11 +69,12 @@ npm run dev
 ### Run Branch Coverage in Jest
 - To see the current unit test coverage, run: ```npm test -- --coverage```
 - Test Result:
-  - Controllers Module Branch Coverage: 75%
+  - Controllers Module Branch Coverage: 72.22%
   - Middlewares Module Branch Coverage: 100%
   - Helper Module Branch Coverage: 100%
   - Models Module Branch Coverage: 50%
-  - Overall: 86.84%
+  - Overall: 86.36%
+<img width="628" alt="Screenshot 2023-11-30 at 2 56 52 PM" src="https://github.com/Crusiom/COMSW4156-Project/assets/73783044/3ff71fc5-502f-4515-8c9b-75880d464ddd">
 
 ### External Integration Tests
 - This project does not use any third-party libraries or databases.
@@ -303,7 +307,5 @@ npm run dev
   - Response Codes:
     - ```200: Success```
     - ```404: Resource not found```
-
-
-
 ```````
+
