@@ -1,6 +1,26 @@
 const Review = require('../models/Reviews');
 const asyncHandler = require('../middlewares/async');
 
+// get all reviews that fall under the selected event
+// @routes    GET /api/v1/reviews
+// @access    Public
+exports.getReview = asyncHandler(async (req, res, next) => {
+    try {
+        const event = req.user.event;
+
+        const reviews = await Review.find({ event });
+
+        // Respond with a success status and the list of reviews
+        return res.status(200).json({
+            success: true,
+            data: reviews,
+        });
+    } catch (err) {
+        // Pass any encountered errors to the error-handling middleware
+        return next(err);
+    }
+});
+
 // @desc      Create review
 // @route     POST /api/v1/reviews
 // @access    Private
