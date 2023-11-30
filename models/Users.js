@@ -57,24 +57,24 @@ UserSchema.pre('save', async function (next) {
     this.password = await bcrypt.hash(this.password, salt);
 });
 
-//get jwt(that contains user id and signs it with the JWT_SECRET secret key) and return
+// get jwt(that contains user id and signs it with the JWT_SECRET secret key) and return
 UserSchema.methods.getSignedJwtToken = function () {
     return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
         expiresIn: process.env.JWT_EXPIRE,
     });
 };
 
-//match user entered password to hashed password in database
+// match user entered password to hashed password in database
 UserSchema.methods.matchPassword = async function (enteredPassword) {
     return await bcrypt.compare(enteredPassword, this.password);
 };
 
-//generate and hash password token
+// generate and hash password token
 UserSchema.methods.getResetPasswordToken = function () {
-    //generate token
+    // generate token
     const resetToken = crypto.randomBytes(20).toString('hex');
 
-    //hash that token and set to resetPasswordToken field
+    // hash that token and set to resetPasswordToken field
     this.resetPasswordToken = crypto.createHash('sha256').update(resetToken).digest('hex');
 
     // set expire to that hashed token

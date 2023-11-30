@@ -3,7 +3,7 @@ const ErrorResponse = require('../helpers/errResponse');
 const asyncHandler = require('./async');
 const User = require('../models/Users');
 
-//protect route
+// protect route
 exports.protect = asyncHandler(async (req, res, next) => {
     let token;
 
@@ -13,13 +13,13 @@ exports.protect = asyncHandler(async (req, res, next) => {
         token = req.cookies.token;
     }
 
-    //Make sure token exist
+    // Make sure token exist
     if (!token) {
-        return next(new ErrorResponse(`Not authorized to access this route`, 401));
+        return next(new ErrorResponse('Not authorized to access this route', 401));
     }
 
     try {
-        //verify token
+        // verify token
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         console.log(decoded);
 
@@ -30,7 +30,7 @@ exports.protect = asyncHandler(async (req, res, next) => {
     }
 });
 
-//Grant access to specified roles
+// Grant access to specified roles
 exports.authorize = (...roles) => {
     return (req, res, next) => {
         if (!roles.includes(req.user.role)) {

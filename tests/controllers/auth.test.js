@@ -60,7 +60,7 @@ describe('Authentication Controller', () => {
             await register(req, res, next);
 
             expect(res.statusCode).to.equal(null);
-            //expect(res.data).to.deep.include({ token: 'mockToken' });
+            // expect(res.data).to.deep.include({ token: 'mockToken' });
         });
 
         it('should return error if user already exists', async () => {
@@ -340,7 +340,7 @@ describe('Authentication Controller', () => {
             await getMe(req, res, next);
         
             expect(res.statusCode).to.equal(null); // Unauthorized
-            //expect(res.data).to.deep.include({ success: false, error: 'Not authorized to access this route' });
+            // expect(res.data).to.deep.include({ success: false, error: 'Not authorized to access this route' });
         });
         
         it('should handle exceptions when retrieving user details', async () => {

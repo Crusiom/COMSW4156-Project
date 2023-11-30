@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">57.14% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>4/7</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">57.14% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>4/7</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -112,11 +112,9 @@
 <a name='L47'></a><a href='#L47'>47</a>
 <a name='L48'></a><a href='#L48'>48</a>
 <a name='L49'></a><a href='#L49'>49</a>
-<a name='L50'></a><a href='#L50'>50</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
+<a name='L50'></a><a href='#L50'>50</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -154,13 +152,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const mongoose = require('mongoose');
 &nbsp;
 const EventSchema = new mongoose.Schema({
@@ -190,11 +190,11 @@ const EventSchema = new mongoose.Schema({
         type: String,
         select: false,
     },
-    averageRating: {
-        type: Number,
-        min: [1, 'Rating must be at least 1'],
-        max: [10, 'Rating must can not be more than 10'],
-    },
+    // averageRating: {
+    //     type: Number,
+    //     min: [1, 'Rating must be at least 1'],
+    //     max: [10, 'Rating must can not be more than 10'],
+    // },
     // Creation date of the event, with a default value of the current date and time.
     CreatedAt: {
         type: Date,
@@ -202,12 +202,12 @@ const EventSchema = new mongoose.Schema({
     },
 });
 &nbsp;
-// when an event is deleted, delete all reviews under it
-EventSchema.pre('remove', <span class="fstat-no" title="function not covered" >as</span>ync function (next) {
-<span class="cstat-no" title="statement not covered" >    console.log(`Reviews being removed from event ${this._id}`);</span>
-<span class="cstat-no" title="statement not covered" >    await this.model('Reviews').deleteMany({ event: this._id });</span>
-<span class="cstat-no" title="statement not covered" >    next();</span>
-});
+// // when an event is deleted, delete all reviews under it
+// EventSchema.pre('remove', async function (next) {
+//     console.log(`Reviews being removed from event ${this._id}`);
+//     await this.model('Reviews').deleteMany({ event: this._id });
+//     next();
+// });
 &nbsp;
 module.exports = mongoose.model('Events', EventSchema);
 &nbsp;</pre></td></tr></table></pre>
@@ -217,7 +217,7 @@ module.exports = mongoose.model('Events', EventSchema);
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-11-30T01:07:55.231Z
+                at 2023-11-30T01:41:08.480Z
             </div>
         <script src="../prettify.js"></script>
         <script>

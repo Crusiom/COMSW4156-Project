@@ -1,7 +1,5 @@
 const Review = require('../models/Reviews');
-const App = require('../models/Apps');
 const asyncHandler = require('../middlewares/async');
-const ErrorResponse = require('../helpers/errResponse');
 
 // @desc      Create review
 // @route     POST /api/v1/reviews

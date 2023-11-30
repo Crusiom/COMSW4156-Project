@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">84.61% </span>
+                <span class="strong">81.81% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>33/39</span>
+                <span class='fraction'>36/44</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">64.28% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>8/12</span>
+                <span class='fraction'>9/14</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>5/5</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">84.61% </span>
+                <span class="strong">81.81% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>33/39</span>
+                <span class='fraction'>36/44</span>
             </div>
         
             
@@ -176,7 +176,27 @@
 <a name='L111'></a><a href='#L111'>111</a>
 <a name='L112'></a><a href='#L112'>112</a>
 <a name='L113'></a><a href='#L113'>113</a>
-<a name='L114'></a><a href='#L114'>114</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L114'></a><a href='#L114'>114</a>
+<a name='L115'></a><a href='#L115'>115</a>
+<a name='L116'></a><a href='#L116'>116</a>
+<a name='L117'></a><a href='#L117'>117</a>
+<a name='L118'></a><a href='#L118'>118</a>
+<a name='L119'></a><a href='#L119'>119</a>
+<a name='L120'></a><a href='#L120'>120</a>
+<a name='L121'></a><a href='#L121'>121</a>
+<a name='L122'></a><a href='#L122'>122</a>
+<a name='L123'></a><a href='#L123'>123</a>
+<a name='L124'></a><a href='#L124'>124</a>
+<a name='L125'></a><a href='#L125'>125</a>
+<a name='L126'></a><a href='#L126'>126</a>
+<a name='L127'></a><a href='#L127'>127</a>
+<a name='L128'></a><a href='#L128'>128</a>
+<a name='L129'></a><a href='#L129'>129</a>
+<a name='L130'></a><a href='#L130'>130</a>
+<a name='L131'></a><a href='#L131'>131</a>
+<a name='L132'></a><a href='#L132'>132</a>
+<a name='L133'></a><a href='#L133'>133</a>
+<a name='L134'></a><a href='#L134'>134</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -202,7 +222,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -289,6 +309,26 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const User = require('../models/Users');
 const ErrorResponse = require('../helpers/errResponse');
 const asyncHandler = require('../middlewares/async');
@@ -305,7 +345,7 @@ exports.register = asyncHandler(async (req, res, next) =&gt; {
             return next(new ErrorResponse('User with this email already exists', 400));
         }
 &nbsp;
-        //create a user
+        // create a user
         const user = await User.create({
             name,
             email,
@@ -313,9 +353,9 @@ exports.register = asyncHandler(async (req, res, next) =&gt; {
             app,
             role,
         });
-        sendTokenResponse(user, 200, res);
+        sendTokenResponseStatic(user, 200, res);
     } catch (err) {
-        return next(err);
+<span class="cstat-no" title="statement not covered" >        return next(err);</span>
     }
 });
 &nbsp;
@@ -325,26 +365,26 @@ exports.register = asyncHandler(async (req, res, next) =&gt; {
 exports.login = asyncHandler(async (req, res, next) =&gt; {
     const { email, password } = req.body;
 &nbsp;
-    //validate email and password
+    // validate email and password
     if (!email || !password) {
-        return next(new ErrorResponse(`Please enter email and password`, 400));
+        return next(new ErrorResponse('Please enter email and password', 400));
     }
 &nbsp;
-    //check for user
+    // check for user
     const user = await User.findOne({ email }).select('+password');
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    if (!user) {</span>
-<span class="cstat-no" title="statement not covered" >        return next(new ErrorResponse(`Invalid Credentials`, 401));</span>
+<span class="cstat-no" title="statement not covered" >        return next(new ErrorResponse('Invalid Credentials', 401));</span>
     }
 &nbsp;
-    //check if the password matches
+    // check if the password matches
     const isMatch = <span class="cstat-no" title="statement not covered" >await user.matchPassword(password);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    if (!isMatch) {</span>
-<span class="cstat-no" title="statement not covered" >        return next(new ErrorResponse(`Invalid Credentials`, 401));</span>
+<span class="cstat-no" title="statement not covered" >        return next(new ErrorResponse('Invalid Credentials', 401));</span>
     }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    sendTokenResponse(user, 200, res);</span>
+<span class="cstat-no" title="statement not covered" >    sendTokenResponseStatic(user, 200, res);</span>
 });
 &nbsp;
 // @desc      Log user out and clear cookies
@@ -384,10 +424,10 @@ exports.getMe = asyncHandler(async (req, res, next) =&gt; {
 &nbsp;
 // Get Token from model, create cookie, and send response
 exports.sendTokenResponse = (user, statusCode, res) =&gt; {
-    //create token
+    // create token
     const token = user.getSignedJwtToken();
 &nbsp;
-    //create cookie
+    // create cookie
     const options = {
         expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRE * 24 * 60 * 60 * 1000),
         httpOnly: true,
@@ -402,6 +442,26 @@ exports.sendTokenResponse = (user, statusCode, res) =&gt; {
         token,
     });
 };
+&nbsp;
+function sendTokenResponseStatic (user, statusCode, res) {
+    // create token
+    const token = user.getSignedJwtToken();
+&nbsp;
+    // create cookie
+    const options = {
+        expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRE * 24 * 60 * 60 * 1000),
+        httpOnly: true,
+    };
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (process.env.NODE_ENV === 'production') {
+<span class="cstat-no" title="statement not covered" >        options.secure = true;</span>
+    }
+&nbsp;
+    return res.status(statusCode).cookie('token', token, options).json({
+        success: true,
+        token,
+    });
+};
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -409,7 +469,7 @@ exports.sendTokenResponse = (user, statusCode, res) =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-11-30T01:07:55.231Z
+                at 2023-11-30T01:41:08.480Z
             </div>
         <script src="../prettify.js"></script>
         <script>
