@@ -13,7 +13,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [21.x]  # Set this to match your local Node version
+        node-version: [18.x]  # Set this to match your local Node version
 
     steps:
     - uses: actions/checkout@v3
