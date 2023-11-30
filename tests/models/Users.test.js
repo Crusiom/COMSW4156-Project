@@ -40,9 +40,9 @@ describe('UserSchema', () => {
 
         user.save();
 
-        //expect(bcrypt.genSalt).to.have.been.calledOnceWith();
-        //expect(bcrypt.hash).to.have.been.calledOnceWith('password123', 'salt');
-        //expect(user.password).to.equal('hashedPassword123');
+        // expect(bcrypt.genSalt).to.have.been.calledOnceWith();
+        // expect(bcrypt.hash).to.have.been.calledOnceWith('password123', 'salt');
+        // expect(user.password).to.equal('hashedPassword123');
     });
     
 

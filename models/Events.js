@@ -27,11 +27,11 @@ const EventSchema = new mongoose.Schema({
         type: String,
         select: false,
     },
-    averageRating: {
-        type: Number,
-        min: [1, 'Rating must be at least 1'],
-        max: [10, 'Rating must can not be more than 10'],
-    },
+    // averageRating: {
+    //     type: Number,
+    //     min: [1, 'Rating must be at least 1'],
+    //     max: [10, 'Rating must can not be more than 10'],
+    // },
     // Creation date of the event, with a default value of the current date and time.
     CreatedAt: {
         type: Date,
@@ -39,11 +39,11 @@ const EventSchema = new mongoose.Schema({
     },
 });
 
-// when an event is deleted, delete all reviews under it
-EventSchema.pre('remove', async function (next) {
-    console.log(`Reviews being removed from event ${this._id}`);
-    await this.model('Reviews').deleteMany({ event: this._id });
-    next();
-});
+// // when an event is deleted, delete all reviews under it
+// EventSchema.pre('remove', async function (next) {
+//     console.log(`Reviews being removed from event ${this._id}`);
+//     await this.model('Reviews').deleteMany({ event: this._id });
+//     next();
+// });
 
 module.exports = mongoose.model('Events', EventSchema);

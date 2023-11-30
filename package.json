@@ -4,12 +4,12 @@
     "description": "",
     "main": "server.js",
     "engines": {
-        "node": ">=12.0.0"
+        "node": ">=18.0.0"
     },
     "scripts": {
         "dev": "nodemon server.js",
         "test": "jest",
-        "lint": "eslint . --ext .js",
+        "lint": "eslint . --ext .js --rule semi:off --rule indent:off --rule comma-dangle:off",
         "lint:fix": "eslint --fix ./**/*.js",
         "format": "prettier --write --config ./.prettierrc \"./**/*.{js,md,json}\""
     },

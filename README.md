@@ -39,7 +39,7 @@ npm run dev
 -   The project includes a structured unit testing framework to ensure code correctness and reliability. Unit tests are organized and can be executed with a single command.
 -   All tests for our code are in the /tests directory, run at root directory:
 
-```````
+```
 .
 ├── controllers
 │   ├── app.test.js
@@ -57,18 +57,28 @@ npm run dev
     ├── Apps.test.js
     ├── Events.test.js
     └── Users.test.js
+```
 ### Unit Testing
 - To run the test: ```npm test```
 - Setup ```npm i```
 - To teardown temporary files: ```rmdir /s /q node modules```
 
 ### Run Branch Coverage in Jest
-- To see the current unit test coverage, run: ```npm test -- --coverage``````
+- To see the current unit test coverage, run: ```npm test -- --coverage```
 - Test Result:
-  - Controllers Module Branch Coverage:
+  - Controllers Module Branch Coverage: 75%
   - Middlewares Module Branch Coverage: 100%
   - Helper Module Branch Coverage: 100%
-  - Models Module Branch Coverage:
+  - Models Module Branch Coverage: 50%
+  - Overall: 86.84%
+
+### External Integration Tests
+- This project does not use any third-party libraries or databases.
+
+### Bug Finder
+- This project uses ESLint as our static analysis tool to check the entire codebase for syntax errors, and potential bugs, and to enforce a consistent code style. This helps maintain code quality and readability.
+- The bug finder is integrated ESLint into our Continuous Integration (CI) pipeline. (in workflows/eslint.yml)
+- Test Results: all tests passed.
 
 ## API Endpoints
 
@@ -173,6 +183,69 @@ npm run dev
     - ```200: Success```
     - ```401: Not authorized to get events```
 
+**Review**
+- `GET /api/v1/reviews`
+  - Description:
+    Get a list of all reviews that fall under the current event of the user
+  - Request Headers:
+    - `Authorizatoin: string starting with 'Bearer'`
+  - Response Codes:
+    - ```200: Success```
+    - ```401: Not authorized to get events```
+
+- `POST /api/v1/reviews`
+  - Description:
+    Create a new review that falls under a certain event. e.x. a therapy event of a medicare app.
+  - Request Headers:
+    - `Authorizatoin: string starting with 'Bearer'`
+  - Request Body:
+    - `title:string`
+    - `author:string`
+    - `content:string`
+    - `event:string`
+    - `CreatedAt: DateTime`
+  - Response Codes:
+    - ```200: Success```
+    - ```400: Unexpected json syntax in request body```
+    - ```401: Not authorized to create reviews```
+
+- `PUT /api/v1/reviews/:id`
+  - Description:
+    Update an existing review that falls under a certain event.
+  - Request Params:
+    - `id:string`
+  - Request Headers:
+    - `Authorizatoin: string starting with 'Bearer'`
+  - Request Body:
+    - `title:string`
+    - `author:string`
+    - `content:string`
+    - `event:string`
+    - `CreatedAt: DateTime`
+  - Response Codes:
+    - ```201: Success```
+    - ```401: Not authorized to update reviews```
+    - ```404: Resource not found```
+
+- `PUT /api/v1/reviews/:id`
+  - Description:
+    Delete an existing review that falls under a certain event.
+  - Request Params:
+    - `id:string`
+  - Request Headers:
+    - `Authorizatoin: string starting with 'Bearer'`
+  - Request Body:
+    - `title:string`
+    - `author:string`
+    - `content:string`
+    - `event:string`
+    - `CreatedAt: DateTime`
+  - Response Codes:
+    - ```200: Success```
+    - ```401: Not authorized to delete reviews```
+    - ```404: Resource not found```
+
+      
 **Users**
 
 - `GET /api/v1/users`

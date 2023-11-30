@@ -312,7 +312,7 @@ exports.getEvents = asyncHandler(async (req, res, next) =&gt; {
         const app = req.user.app;
 &nbsp;
         // Find events associated with the user's app
-        const events = await Event.find({ app: app });
+        const events = await Event.find({ app });
 &nbsp;
         // Respond with a success status and the list of events
         return res.status(200).json({

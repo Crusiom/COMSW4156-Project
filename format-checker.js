@@ -4,7 +4,7 @@ const path = require('path');
 
 const MAX_LINE_LENGTH = 100; // Define the maximum line length
 
-function getFormattedTimestamp() {
+function getFormattedTimestamp () {
   const now = new Date();
   const year = now.getFullYear();
   const month = String(now.getMonth() + 1).padStart(2, '0');
@@ -15,33 +15,33 @@ function getFormattedTimestamp() {
   return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}Z`;
 }
 
-function logInfo(message) {
+function logInfo (message) {
   const timestamp = getFormattedTimestamp();
   const logLine = `[INFO]---${timestamp}---${message}`;
   console.log(logLine.replace(/ /g, '').padEnd(MAX_LINE_LENGTH, '-'));
 }
 
-function logError(message) {
+function logError (message) {
   const timestamp = getFormattedTimestamp();
   const logLine = `[ERROR]---${timestamp}---${message}`;
   console.error(logLine.replace(/ /g, '').padEnd(MAX_LINE_LENGTH, '-'));
 }
 
-function logIndentedInfo(message, indentationLevel = 0) {
+function logIndentedInfo (message, indentationLevel = 0) {
   const timestamp = getFormattedTimestamp();
   const indentation = ' '.repeat(indentationLevel * 2);
   const logLine = `[INFO]---${timestamp}---${indentation}${message}`;
   console.log(logLine.replace(/ /g, '').padEnd(MAX_LINE_LENGTH, '-'));
 }
 
-function logIndentedError(message, indentationLevel = 0) {
-  const timestamp = getFormattedTimestamp();
-  const indentation = ' '.repeat(indentationLevel * 2);
-  const logLine = `[ERROR]---${timestamp}---${indentation}${message}`;
-  console.error(logLine.replace(/ /g, '').padEnd(MAX_LINE_LENGTH, '-'));
-}
+// function logIndentedError(message, indentationLevel = 0) {
+//   const timestamp = getFormattedTimestamp();
+//   const indentation = ' '.repeat(indentationLevel * 2);
+//   const logLine = `[ERROR]---${timestamp}---${indentation}${message}`;
+//   console.error(logLine.replace(/ /g, '').padEnd(MAX_LINE_LENGTH, '-'));
+// }
 
-function getAllFiles(directoryPath, fileList, indentationLevel = 0) {
+function getAllFiles (directoryPath, fileList, indentationLevel = 0) {
   const files = fs.readdirSync(directoryPath);
 
   fileList = fileList || [];
@@ -61,7 +61,7 @@ function getAllFiles(directoryPath, fileList, indentationLevel = 0) {
   return fileList;
 }
 
-async function checkCodeStyle() {
+async function checkCodeStyle () {
   const startTime = performance.now();
   logInfo('Scanning for projects');
 
