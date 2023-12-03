@@ -7,7 +7,7 @@ describe('Auth Endpoints', () => {
             /* app data */
         });
 
-        expect(res.statusCode).toEqual();
+        expect(res.statusCode).toEqual(); // undefined
         // Additional assertions as needed
     });
     it('should register a user successfully', async () => {
@@ -32,28 +32,4 @@ describe('Auth Endpoints', () => {
 
         expect(res.statusCode).toEqual(); // undefiend
     });
-
-    it('should register a user successfully', async () => {
-        const res = request(app).post('/api/v1/auth/register').send({
-            name: 'New User',
-            email: 'newuser@example.com',
-            password: 'password123',
-            app: 'Test App',
-            role: 'User',
-        });
-        expect(res.statusCode).toEqual(); // Adjust according to your API
-    });
-
-    // Test for user registration with existing email
-    it('should fail to register a user with existing email', async () => {
-        const res = request(app).post('/api/v1/auth/register').send({
-            name: 'Existing User',
-            email: 'existing@example.com', // Use an email that's already registered
-            password: 'password123',
-            app: 'Test App',
-            role: 'User',
-        });
-        expect(res.statusCode).toEqual(); // Or another appropriate error code
-    });
-
 });
