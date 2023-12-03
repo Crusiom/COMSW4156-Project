@@ -1,5 +1,5 @@
-const Review = require('../../models/Reviews');
-jest.mock('../../models/Reviews'); // Mock the Review model
+const Review = require('../../../models/Reviews');
+jest.mock('../../../models/Reviews'); // Mock the Review model
 
 // Mock asyncHandler
 const asyncHandler = jest.fn((fn) => (req, res, next) => {
@@ -21,7 +21,7 @@ it('should create a review successfully', async () => {
     req.user = { event: 'someEvent' };
     Review.create.mockResolvedValue({ id: '123', someReviewData: 'data' });
 
-    const { createReview } = require('../../controllers/reviews');
+    const { createReview } = require('../../../controllers/reviews');
     await createReview(req, res, next);
 
     expect(Review.create).toHaveBeenCalledWith({ someReviewData: 'data', event: 'someEvent' });
@@ -35,7 +35,7 @@ it('should handle errors during review creation', async () => {
     req.body = { someReviewData: 'data' };
     Review.create.mockRejectedValue(new Error('Creation failed'));
 
-    const { createReview } = require('../../controllers/reviews');
+    const { createReview } = require('../../../controllers/reviews');
     await createReview(req, res, next);
 
     expect(next).toHaveBeenCalledWith(expect.any(Error));
@@ -45,7 +45,7 @@ it('should handle errors during review deletion', async () => {
     req.params.id = '123';
     Review.findByIdAndDelete.mockRejectedValue(new Error('Deletion failed'));
 
-    const { deleteReview } = require('../../controllers/reviews');
+    const { deleteReview } = require('../../../controllers/reviews');
     await deleteReview(req, res, next);
 
     expect(next).toHaveBeenCalledWith(expect.any(Error));

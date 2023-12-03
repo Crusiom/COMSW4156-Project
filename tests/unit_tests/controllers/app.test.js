@@ -4,8 +4,8 @@ const sinonChai = require('sinon-chai');
 const { expect } = chai;
 chai.use(sinonChai);
 
-const { createApp, updateApp } = require('../../controllers/app.js');
-const App = require('../../models/Apps');
+const { createApp, updateApp } = require('../../../controllers/app.js');
+const App = require('../../../models/Apps');
 
 describe('App Controller', () => {
     let req, res, next;
@@ -14,11 +14,11 @@ describe('App Controller', () => {
         req = {
             user: { _id: 'mockUserId' },
             body: {},
-            params: {}
+            params: {},
         };
         res = {
             json: sinon.spy(),
-            status: sinon.stub().returnsThis()
+            status: sinon.stub().returnsThis(),
         };
         next = sinon.spy();
     });
@@ -40,7 +40,7 @@ describe('App Controller', () => {
             expect(res.status).to.have.been.calledWith(200);
             expect(res.json).to.have.been.calledWith({
                 success: true,
-                data: mockApp
+                data: mockApp,
             });
         });
 
@@ -109,12 +109,12 @@ describe('App Controller', () => {
             req.params.id = 'nonexistentAppId';
             req.user._id = 'mockUserId';
             req.body = { name: 'updatedMockAppName' };
-    
+
             // Mock App.findById to return null, simulating app not found
             sinon.stub(App, 'findById').resolves(null);
-    
+
             await updateApp(req, res, next);
-    
+
             // Check if 'next' is called with an ErrorResponse for app not found
             expect(res.statusCode).to.equal();
         });

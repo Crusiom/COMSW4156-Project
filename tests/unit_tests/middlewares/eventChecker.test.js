@@ -1,8 +1,8 @@
-const Event = require('../../models/Events');
-jest.mock('../../models/Events'); // Mock the Event model
-const ErrorResponse = require('../../helpers/errResponse'); // Adjust the path as necessary
+const Event = require('../../../models/Events');
+jest.mock('../../../models/Events'); // Mock the Event model
+const ErrorResponse = require('../../../helpers/errResponse'); // Adjust the path as necessary
 
-jest.mock('../../models/Events'); // Mock the Event model
+jest.mock('../../../models/Events'); // Mock the Event model
 
 // ... rest of your code remains the same
 
@@ -23,7 +23,7 @@ beforeEach(() => {
 });
 it('should return an error if the event is not found', async () => {
     Event.findOneById.mockResolvedValue(null);
-    const { checkEventConfig } = require('../../middlewares/eventChecker');
+    const { checkEventConfig } = require('../../../middlewares/eventChecker');
 
     const middleware = checkEventConfig('someSetting');
     await middleware(req, res, next);
@@ -33,7 +33,7 @@ it('should return an error if the event is not found', async () => {
 });
 it('should return an error if the specified setting is disabled', async () => {
     Event.findOneById.mockResolvedValue({ someSetting: false });
-    const { checkEventConfig } = require('../../middlewares/eventChecker');
+    const { checkEventConfig } = require('../../../middlewares/eventChecker');
 
     const middleware = checkEventConfig('someSetting');
     await middleware(req, res, next);
@@ -43,7 +43,7 @@ it('should return an error if the specified setting is disabled', async () => {
 });
 it('should call next without error if the event is found and setting is enabled', async () => {
     Event.findOneById.mockResolvedValue({ someSetting: true });
-    const { checkEventConfig } = require('../../middlewares/eventChecker');
+    const { checkEventConfig } = require('../../../middlewares/eventChecker');
 
     const middleware = checkEventConfig('someSetting');
     await middleware(req, res, next);

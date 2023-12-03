@@ -1,5 +1,5 @@
-const { createEvent, updateEvent, deleteEvent, getEvents } = require('../../controllers/event.js');
-const Event = require('../../models/Events');
+const { createEvent, updateEvent, deleteEvent, getEvents } = require('../../../controllers/event.js');
+const Event = require('../../../models/Events');
 
 // Helper function to mock the request object
 const mockRequest = (body, user, params) => ({

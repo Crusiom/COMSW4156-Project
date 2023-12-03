@@ -9,7 +9,7 @@ const sinonChai = require('sinon-chai');
 chai.use(sinonChai);
 const { expect } = chai;
 
-const User = require('../../models/Users.js');
+const User = require('../../../models/Users.js');
 describe('UserSchema', () => {
     let sandbox;
 
@@ -44,7 +44,6 @@ describe('UserSchema', () => {
         // expect(bcrypt.hash).to.have.been.calledOnceWith('password123', 'salt');
         // expect(user.password).to.equal('hashedPassword123');
     });
-    
 
     it('should get a signed JWT token', () => {
         const userData = {
@@ -99,25 +98,25 @@ describe('UserSchema', () => {
             password: 'password123',
             app: 'TestApp',
         };
-    
+
         const user = new User(userData);
-    
+
         // Stub isModified to return false
         sandbox.stub(user, 'isModified').withArgs('password').returns(false);
-    
+
         // Stub genSalt and hash
         sandbox.spy(bcrypt, 'genSalt');
         sandbox.spy(bcrypt, 'hash');
-    
+
         try {
             user.save();
-            
+
             // Assert that bcrypt.genSalt and bcrypt.hash were not called
             expect(bcrypt.genSalt).to.not.have.been.called;
             expect(bcrypt.hash).to.not.have.been.called;
         } catch (error) {
             // Fail the test if an error occurs
-            assert.fail("Test failed with error: " + error.message);
+            assert.fail('Test failed with error: ' + error.message);
         }
     });
 
@@ -128,17 +127,16 @@ describe('UserSchema', () => {
             password: 'password123',
             app: 'TestApp',
         };
-    
+
         const user = new User(userData);
-    
+
         // Simulate saving the user which hashes the password
         const salt = await bcrypt.genSalt(10);
         user.password = await bcrypt.hash(user.password, salt);
-        
+
         // Attempt to match the password
         const isMatch = await user.matchPassword('password123');
-    
+
         expect(isMatch).to.be.true;
     });
-    
 });

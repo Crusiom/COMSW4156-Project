@@ -2,9 +2,9 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const jwt = require('jsonwebtoken');
 const sinon = require('sinon');
-const authMiddleware = require('../../middlewares/auth');
-const User = require('../../models/Users');
-const ErrorResponse = require('../../helpers/errResponse');
+const authMiddleware = require('../../../middlewares/auth');
+const User = require('../../../models/Users');
+const ErrorResponse = require('../../../helpers/errResponse');
 process.env.JWT_SECRET = 'your_secret_key';
 
 chai.use(chaiHttp);

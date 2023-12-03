@@ -1,6 +1,6 @@
-const { getUsers, getUser, createUser, updateUser, deleteUser } = require('../../controllers/users.js');
+const { getUsers, getUser, createUser, updateUser, deleteUser } = require('../../../controllers/users.js');
 
-const User = require('../../models/Users');
+const User = require('../../../models/Users');
 
 // Helper function to mock the request object
 const mockRequest = (body, params) => ({

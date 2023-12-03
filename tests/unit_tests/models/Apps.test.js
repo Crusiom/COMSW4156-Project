@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const App = require('../../models/Apps.js');
+const App = require('../../../models/Apps.js');
 
 const mockSave = jest.fn();
 const mockFindById = jest.fn();

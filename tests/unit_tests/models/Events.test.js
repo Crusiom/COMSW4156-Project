@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Event = require('../../models/Events.js');
+const Event = require('../../../models/Events.js');
 
 const mockSave = jest.fn();
 const mockFindById = jest.fn();

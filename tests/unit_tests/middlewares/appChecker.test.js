@@ -1,7 +1,7 @@
 const chai = require('chai');
-const appChecker = require('../../middlewares/appChecker');
-const App = require('../../models/Apps');
-const ErrorResponse = require('../../helpers/errResponse');
+const appChecker = require('../../../middlewares/appChecker');
+const App = require('../../../models/Apps');
+const ErrorResponse = require('../../../helpers/errResponse');
 
 chai.use(require('chai-http'));
 const { expect } = chai;
