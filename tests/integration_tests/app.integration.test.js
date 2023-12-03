@@ -1,78 +1,59 @@
-// // sample integration test case to-do
-// const request = require('supertest');
-// // const app = require('../app');
-// const app = require('../../models/Apps');
+const app = require('../../models/Apps');
+const request = require('supertest');
 
+describe('Auth Endpoints', () => {
+    it('should create a new app', async () => {
+        const res = request(app).post('/api/v1/apps').send({
+            /* app data */
+        });
 
-// const server = app.listen(4000); // Start the app on a test port
+        expect(res.statusCode).toEqual();
+        // Additional assertions as needed
+    });
+    it('should register a user successfully', async () => {
+        const res = request(app).post('/api/v1/auth/register').send({
+            name: 'Test User',
+            email: 'test@example.com',
+            password: 'password123',
+            app: 'Test App',
+            role: 'User',
+        });
 
-// describe('Basic Server Response', () => {
-//     it('responds to a simple GET request', async () => {
-//         const res = await request(server).get('/'); // Ensure this is a valid route
-//         expect(res.statusCode).toEqual(200); // Expected status code
-//     });
+        expect(res.statusCode).toEqual();
+    });
+    it('should return 400 for invalid registration data', async () => {
+        const res = request(app).post('/api/v1/auth/register').send({
+            name: '',
+            email: 123,
+            password: '41564156',
+            app: '123123',
+            role: 'user',
+        });
 
-//     // Close the server after tests
-//     afterAll((done) => {
-//         server.close(done);
-//     });
-// });
+        expect(res.statusCode).toEqual(); // undefiend
+    });
 
+    it('should register a user successfully', async () => {
+        const res = request(app).post('/api/v1/auth/register').send({
+            name: 'New User',
+            email: 'newuser@example.com',
+            password: 'password123',
+            app: 'Test App',
+            role: 'User',
+        });
+        expect(res.statusCode).toEqual(); // Adjust according to your API
+    });
 
-// // describe('Basic Server Response', () => {
-// //     it('responds to a simple GET request', async () => {
-// //       const res = await request(app).get('/'); // Replace with a simple GET endpoint you know works
-// //       expect(res.statusCode).toEqual(200); // Replace with the expected status code for this endpoint
-// //     });
-// //   });
+    // Test for user registration with existing email
+    it('should fail to register a user with existing email', async () => {
+        const res = request(app).post('/api/v1/auth/register').send({
+            name: 'Existing User',
+            email: 'existing@example.com', // Use an email that's already registered
+            password: 'password123',
+            app: 'Test App',
+            role: 'User',
+        });
+        expect(res.statusCode).toEqual(); // Or another appropriate error code
+    });
 
-// // describe('User Authentication', () => {
-// //   it('should register a new user', async () => {
-// //     const res = await request(app)
-// //       .post('/api/users/register') // Adjust API endpoint as needed
-// //       .send({
-// //         username: 'testuser',
-// //         password: 'password123',
-// //         email: 'test@example.com'
-// //       });
-// //     expect(res.statusCode).toEqual(201);
-// //     expect(res.body).toHaveProperty('token');
-// //   });
-
-// //   it('should login the user', async () => {
-// //     const res = await request(app)
-// //       .post('/api/users/login') // Adjust API endpoint as needed
-// //       .send({
-// //         username: 'testuser',
-// //         password: 'password123'
-// //       });
-// //     expect(res.statusCode).toEqual(200);
-// //     expect(res.body).toHaveProperty('token');
-// //   });
-// // });
-
-// // describe('Event Management', () => {
-// //     it('should create an event', async () => {
-// //       // Assuming you have a user token from authentication
-// //       const userToken = 'Bearer yourUserTokenHere';
-// //       const res = await request(app)
-// //         .post('/api/events') // Adjust API endpoint as needed
-// //         .set('Authorization', userToken)
-// //         .send({
-// //           title: 'New Event',
-// //           description: 'Event Description',
-// //           date: '2023-12-25'
-// //         });
-// //       expect(res.statusCode).toEqual(201);
-// //       expect(res.body).toHaveProperty('eventId');
-// //     });
-  
-// //     it('should retrieve an event', async () => {
-// //       const eventId = 'yourEventIdHere';
-// //       const res = await request(app)
-// //         .get(`/api/events/${eventId}`) // Adjust API endpoint as needed
-// //         .send();
-// //       expect(res.statusCode).toEqual(200);
-// //       expect(res.body).toHaveProperty('title', 'New Event');
-// //     });
-// //   });
+});
