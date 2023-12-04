@@ -23,6 +23,7 @@ npm run dev
 **Press Ctrl + C**
 
 ## Third Party Code
+
 This project does not use any third-party code.
 
 ## API Documentation
@@ -61,273 +62,308 @@ This project does not use any third-party code.
     ├── Events.test.js
     └── Users.test.js
 ```
+
 ### Unit Testing
-- To run the test: ```npm test```
-- Setup ```npm i```
-- To teardown temporary files: ```rmdir /s /q node modules```
+
+-   To run the test: `npm test`
+-   Setup `npm i`
+-   To teardown temporary files: `rmdir /s /q node modules`
 
 ### Run Branch Coverage in Jest
-- To see the current unit test coverage, run: ```npm test -- --coverage```
-- Test Result:
-  - Controllers Module Branch Coverage: 72.22%
-  - Middlewares Module Branch Coverage: 100%
-  - Helper Module Branch Coverage: 100%
-  - Models Module Branch Coverage: 50%
-  - Overall: 86.36%
-<img width="628" alt="Screenshot 2023-11-30 at 2 56 52 PM" src="https://github.com/Crusiom/COMSW4156-Project/assets/73783044/3ff71fc5-502f-4515-8c9b-75880d464ddd">
+
+-   To see the current unit test coverage, run: `npm test -- --coverage`
+-   Test Result:
+    -   Controllers Module Branch Coverage: 72.22%
+    -   Middlewares Module Branch Coverage: 100%
+    -   Helper Module Branch Coverage: 100%
+    -   Models Module Branch Coverage: 50%
+    -   Overall: 86.36%
+        <img width="628" alt="Screenshot 2023-11-30 at 2 56 52 PM" src="https://github.com/Crusiom/COMSW4156-Project/assets/73783044/3ff71fc5-502f-4515-8c9b-75880d464ddd">
 
 ### External Integration Tests
-- This project does not use any third-party libraries or databases.
+
+-   This project does not use any third-party libraries or databases.
 
 ### Internal Integration Tests
+
 The tests are in tests/Integration_tests.
-- App Management Tests (`app_management.integration.test.js`)
-  - Covers CRUD operations for app management, ensuring correct HTTP responses.
 
-- Authentication Tests (`userauth.integration.test.js`)
-   - Validates new app creation, user registration, and handling of invalid data.
+-   App Management Tests (`app_management.integration.test.js`)
 
-- Event Management Tests (`event_management.integration.test.js`)
-   - Ensures proper event lifecycle management, from creation to deletion.
+    -   Covers CRUD operations for app management, ensuring correct HTTP responses.
 
-- Middleware & Model Tests (`middleware_model.integration.test.js`)
-   - Tests pagination middleware with mocked user data for proper functionality.
+-   Authentication Tests (`userauth.integration.test.js`)
 
-- User Profile Tests (`user_profile_management.integration.test.js`)
-   - Focuses on user profile operations, including updates and handling invalid IDs.
+    -   Validates new app creation, user registration, and handling of invalid data.
 
-- Auth Integration Tests (`auth.integration.test.js`)
-   - Simulates registration and login, focusing on token issuance and error handling.
+-   Event Management Tests (`event_management.integration.test.js`)
+
+    -   Ensures proper event lifecycle management, from creation to deletion.
+
+-   Middleware & Model Tests (`middleware_model.integration.test.js`)
+
+    -   Tests pagination middleware with mocked user data for proper functionality.
+
+-   User Profile Tests (`user_profile_management.integration.test.js`)
+
+    -   Focuses on user profile operations, including updates and handling invalid IDs.
+
+-   Auth Integration Tests (`auth.integration.test.js`)
+
+    -   Simulates registration and login, focusing on token issuance and error handling.
+
+-   Event Visibility Integration Tests (`event_visib.integration.test.js`)
+    -   Simulate a user creating an event and a different user subsequently viewing the event list.
 
 ### Bug Finder
-- This project uses ESLint as our static analysis tool to check the entire codebase for syntax errors, and potential bugs, and to enforce a consistent code style. This helps maintain code quality and readability.
-- The bug finder is integrated ESLint into our Continuous Integration (CI) pipeline. (in workflows/eslint.yml)
-- Test Results: all tests passed.
+
+-   This project uses ESLint as our static analysis tool to check the entire codebase for syntax errors, and potential bugs, and to enforce a consistent code style. This helps maintain code quality and readability.
+-   The bug finder is integrated ESLint into our Continuous Integration (CI) pipeline. (in workflows/eslint.yml)
+-   Test Results: all tests passed.
 
 ### End-to-End Testing
 
 ## API Endpoints
 
 **App**
-- `POST /createApp`
-  - Description:
-    Create a new application
-  - Response Codes:
-    - ```200: Success```
-    - ```400: Missing title for the application```
-    - ```401: Not authorized to create an application```
 
-- `POST /api/v1/apps/:id`
-  - Description:
-    Update an existing application
-  - Request Body:
-    - `id:string`
-  - Response Codes:
-    - ```201: Success```
-    - ```401: Not authorized to update an application```
-    - ```404: Resource not found```
+-   `POST /createApp`
+
+    -   Description:
+        Create a new application
+    -   Response Codes:
+        -   `200: Success`
+        -   `400: Missing title for the application`
+        -   `401: Not authorized to create an application`
+
+-   `POST /api/v1/apps/:id`
+    -   Description:
+        Update an existing application
+    -   Request Body:
+        -   `id:string`
+    -   Response Codes:
+        -   `201: Success`
+        -   `401: Not authorized to update an application`
+        -   `404: Resource not found`
 
 **Auth**
-- `POST /api/v1/auth/register`
-  - Description:
-    Register a user that comes with a certain role and a certain end-application
-  - Request Body:
-    - `name:string`
-    - `email:string`
-    - `password:string`
-    - `app:string`
-    - `role:string`
-  - Response Codes:
-    - ```200: Success```
-    - ```400: User with this email already exists```
 
-- `POST /api/v1/auth/login`
-  - Description:
-    Login a user (which could be a publisher or a end-user)
-  - Request Body:
-    - `email:string`
-    - `password:string`
-  - Response Codes:
-    - ```200: Success```
-    - ```400: Missing email and/or password```
-    - ```401: Invalid Credentialss```
+-   `POST /api/v1/auth/register`
 
-- `GET /api/v1/auth/logout`
-  - Description:
-    Log a user out and clear cookies
-  - Response Codes:
-    - ```200: Success```
+    -   Description:
+        Register a user that comes with a certain role and a certain end-application
+    -   Request Body:
+        -   `name:string`
+        -   `email:string`
+        -   `password:string`
+        -   `app:string`
+        -   `role:string`
+    -   Response Codes:
+        -   `200: Success`
+        -   `400: User with this email already exists`
 
-- `GET /api/v1/auth/me`
-  - Description:
-    Retrieves the details of the currently authenticated user
-  - Request Body:
-    - `id:string`
-  - Response Codes:
-    - ```200: Success```
-    - ```401: Not authorized to get users```
-    - ```404: Cannot get the user(s)```
+-   `POST /api/v1/auth/login`
+
+    -   Description:
+        Login a user (which could be a publisher or a end-user)
+    -   Request Body:
+        -   `email:string`
+        -   `password:string`
+    -   Response Codes:
+        -   `200: Success`
+        -   `400: Missing email and/or password`
+        -   `401: Invalid Credentialss`
+
+-   `GET /api/v1/auth/logout`
+
+    -   Description:
+        Log a user out and clear cookies
+    -   Response Codes:
+        -   `200: Success`
+
+-   `GET /api/v1/auth/me`
+    -   Description:
+        Retrieves the details of the currently authenticated user
+    -   Request Body:
+        -   `id:string`
+    -   Response Codes:
+        -   `200: Success`
+        -   `401: Not authorized to get users`
+        -   `404: Cannot get the user(s)`
 
 **Event**
-- `POST /api/v1/events`
-  - Description:
-    Create a new event that falls under a certain application. e.x. a therapy session of a medicare app.
-  - Request Body:
-    - `id:string`
-    - `app:string`
-  - Response Codes:
-    - ```200: Success```
-    - ```400: Unexpected json syntax in request body```
-    - ```401: Not authorized to create events```
 
-- `PUT /api/v1/events/:id`
-  - Description:
-    Update an existing event that falls under a certain application.
-  - Request Body:
-    - `id:string`
-  - Response Codes:
-    - ```201: Success```
-    - ```401: Not authorized to update events```
-    - ```404: Resource not found```
+-   `POST /api/v1/events`
 
-- `PUT /api/v1/events/:id`
-  - Description:
-    Delete an existing event that falls under a certain application.
-  - Request Body:
-    - `id:string`
-  - Response Codes:
-    - ```200: Success```
-    - ```401: Not authorized to delete events```
-    - ```404: Resource not found```
+    -   Description:
+        Create a new event that falls under a certain application. e.x. a therapy session of a medicare app.
+    -   Request Body:
+        -   `id:string`
+        -   `app:string`
+    -   Response Codes:
+        -   `200: Success`
+        -   `400: Unexpected json syntax in request body`
+        -   `401: Not authorized to create events`
 
-- `GET /api/v1/events`
-  - Description:
-    Get a list of all events that fall under the current application
-  - Request Body:
-    - `app:string`
-  - Response Codes:
-    - ```200: Success```
-    - ```401: Not authorized to get events```
+-   `PUT /api/v1/events/:id`
+
+    -   Description:
+        Update an existing event that falls under a certain application.
+    -   Request Body:
+        -   `id:string`
+    -   Response Codes:
+        -   `201: Success`
+        -   `401: Not authorized to update events`
+        -   `404: Resource not found`
+
+-   `PUT /api/v1/events/:id`
+
+    -   Description:
+        Delete an existing event that falls under a certain application.
+    -   Request Body:
+        -   `id:string`
+    -   Response Codes:
+        -   `200: Success`
+        -   `401: Not authorized to delete events`
+        -   `404: Resource not found`
+
+-   `GET /api/v1/events`
+    -   Description:
+        Get a list of all events that fall under the current application
+    -   Request Body:
+        -   `app:string`
+    -   Response Codes:
+        -   `200: Success`
+        -   `401: Not authorized to get events`
 
 **Review**
-- `GET /api/v1/reviews`
-  - Description:
-    Get a list of all reviews that fall under the current event of the user
-  - Request Headers:
-    - `Authorizatoin: string starting with 'Bearer'`
-  - Response Codes:
-    - ```200: Success```
-    - ```401: Not authorized to get events```
 
-- `POST /api/v1/reviews`
-  - Description:
-    Create a new review that falls under a certain event. e.x. a therapy event of a medicare app.
-  - Request Headers:
-    - `Authorizatoin: string starting with 'Bearer'`
-  - Request Body:
-    - `title:string`
-    - `author:string`
-    - `content:string`
-    - `event:string`
-    - `CreatedAt: DateTime`
-  - Response Codes:
-    - ```200: Success```
-    - ```400: Unexpected json syntax in request body```
-    - ```401: Not authorized to create reviews```
+-   `GET /api/v1/reviews`
 
-- `PUT /api/v1/reviews/:id`
-  - Description:
-    Update an existing review that falls under a certain event.
-  - Request Params:
-    - `id:string`
-  - Request Headers:
-    - `Authorizatoin: string starting with 'Bearer'`
-  - Request Body:
-    - `title:string`
-    - `author:string`
-    - `content:string`
-    - `event:string`
-    - `CreatedAt: DateTime`
-  - Response Codes:
-    - ```201: Success```
-    - ```401: Not authorized to update reviews```
-    - ```404: Resource not found```
+    -   Description:
+        Get a list of all reviews that fall under the current event of the user
+    -   Request Headers:
+        -   `Authorizatoin: string starting with 'Bearer'`
+    -   Response Codes:
+        -   `200: Success`
+        -   `401: Not authorized to get events`
 
-- `PUT /api/v1/reviews/:id`
-  - Description:
-    Delete an existing review that falls under a certain event.
-  - Request Params:
-    - `id:string`
-  - Request Headers:
-    - `Authorizatoin: string starting with 'Bearer'`
-  - Request Body:
-    - `title:string`
-    - `author:string`
-    - `content:string`
-    - `event:string`
-    - `CreatedAt: DateTime`
-  - Response Codes:
-    - ```200: Success```
-    - ```401: Not authorized to delete reviews```
-    - ```404: Resource not found```
+-   `POST /api/v1/reviews`
 
-      
+    -   Description:
+        Create a new review that falls under a certain event. e.x. a therapy event of a medicare app.
+    -   Request Headers:
+        -   `Authorizatoin: string starting with 'Bearer'`
+    -   Request Body:
+        -   `title:string`
+        -   `author:string`
+        -   `content:string`
+        -   `event:string`
+        -   `CreatedAt: DateTime`
+    -   Response Codes:
+        -   `200: Success`
+        -   `400: Unexpected json syntax in request body`
+        -   `401: Not authorized to create reviews`
+
+-   `PUT /api/v1/reviews/:id`
+
+    -   Description:
+        Update an existing review that falls under a certain event.
+    -   Request Params:
+        -   `id:string`
+    -   Request Headers:
+        -   `Authorizatoin: string starting with 'Bearer'`
+    -   Request Body:
+        -   `title:string`
+        -   `author:string`
+        -   `content:string`
+        -   `event:string`
+        -   `CreatedAt: DateTime`
+    -   Response Codes:
+        -   `201: Success`
+        -   `401: Not authorized to update reviews`
+        -   `404: Resource not found`
+
+-   `PUT /api/v1/reviews/:id`
+    -   Description:
+        Delete an existing review that falls under a certain event.
+    -   Request Params:
+        -   `id:string`
+    -   Request Headers:
+        -   `Authorizatoin: string starting with 'Bearer'`
+    -   Request Body:
+        -   `title:string`
+        -   `author:string`
+        -   `content:string`
+        -   `event:string`
+        -   `CreatedAt: DateTime`
+    -   Response Codes:
+        -   `200: Success`
+        -   `401: Not authorized to delete reviews`
+        -   `404: Resource not found`
+
 **Users**
 
-- `GET /api/v1/users`
-  - Description:
-    Get all user profiles (the data fields other than name/email/passwords)
-  - Response Codes:
-    - ```200: Success```
-    - ```404: Invalid Input```
+-   `GET /api/v1/users`
 
-- `GET /api/v1/users/:id`
-  - Description:
-    Get a single user profile (the data fields other than name/email/passwords)
-  - Request Body:
-    - `id:string`
-  - Response Codes:
-    - ```200: Success```
-    - ```404: Invalid Input```
+    -   Description:
+        Get all user profiles (the data fields other than name/email/passwords)
+    -   Response Codes:
+        -   `200: Success`
+        -   `404: Invalid Input`
 
-- `POST /api/v1/users`
-  - Description:
-     Create user's profile, which are the data fields other than name/email/passwords
-  - Request Body:
-    - `id:string`
-    - `name:string`
-    - `email:string`
-    - `password:string`
-    - `app:string`
-    - `role:string`
-    - `other fields:string`
-  - Response Codes:
-    - ```200: Success```
-    - ```404: Resource not found```
+-   `GET /api/v1/users/:id`
 
-- `PUT /api/v1/users/:id`
-  - Description:
-    Update user's profile (update a field other than name/email/passwords)
-  - Request Body:
-    - `id:string`
-    - `name:string`
-    - `email:string`
-    - `password:string`
-    - `app:string`
-    - `role:string`
-    - `other fields:string`
-  - Response Codes:
-    - ```201: Success```
-    - ```400: password is shorter than the minimum allowed length (6)```
-    - ```404: Resource not found```
+    -   Description:
+        Get a single user profile (the data fields other than name/email/passwords)
+    -   Request Body:
+        -   `id:string`
+    -   Response Codes:
+        -   `200: Success`
+        -   `404: Invalid Input`
 
-- `DELETE /api/v1/users`
-  - Description:
-    Delete user's profile
-  - Request Body:
-    - `id:string`
-  - Response Codes:
-    - ```200: Success```
-    - ```404: Resource not found```
-```````
+-   `POST /api/v1/users`
 
+    -   Description:
+        Create user's profile, which are the data fields other than name/email/passwords
+    -   Request Body:
+        -   `id:string`
+        -   `name:string`
+        -   `email:string`
+        -   `password:string`
+        -   `app:string`
+        -   `role:string`
+        -   `other fields:string`
+    -   Response Codes:
+        -   `200: Success`
+        -   `404: Resource not found`
+
+-   `PUT /api/v1/users/:id`
+
+    -   Description:
+        Update user's profile (update a field other than name/email/passwords)
+    -   Request Body:
+        -   `id:string`
+        -   `name:string`
+        -   `email:string`
+        -   `password:string`
+        -   `app:string`
+        -   `role:string`
+        -   `other fields:string`
+    -   Response Codes:
+        -   `201: Success`
+        -   `400: password is shorter than the minimum allowed length (6)`
+        -   `404: Resource not found`
+
+-   `DELETE /api/v1/users`
+    -   Description:
+        Delete user's profile
+    -   Request Body:
+        -   `id:string`
+    -   Response Codes:
+        -   `200: Success`
+        -   `404: Resource not found`
+
+```
+
+```
