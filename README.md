@@ -79,10 +79,32 @@ This project does not use any third-party code.
 ### External Integration Tests
 - This project does not use any third-party libraries or databases.
 
+### Internal Integration Tests
+The tests are in tests/Integration_tests.
+- App Management Tests (`app_management.integration.test.js`)
+  - Covers CRUD operations for app management, ensuring correct HTTP responses.
+
+- Authentication Tests (`userauth.integration.test.js`)
+   - Validates new app creation, user registration, and handling of invalid data.
+
+- Event Management Tests (`event_management.integration.test.js`)
+   - Ensures proper event lifecycle management, from creation to deletion.
+
+- Middleware & Model Tests (`middleware_model.integration.test.js`)
+   - Tests pagination middleware with mocked user data for proper functionality.
+
+- User Profile Tests (`user_profile_management.integration.test.js`)
+   - Focuses on user profile operations, including updates and handling invalid IDs.
+
+- Auth Integration Tests (`auth.integration.test.js`)
+   - Simulates registration and login, focusing on token issuance and error handling.
+
 ### Bug Finder
 - This project uses ESLint as our static analysis tool to check the entire codebase for syntax errors, and potential bugs, and to enforce a consistent code style. This helps maintain code quality and readability.
 - The bug finder is integrated ESLint into our Continuous Integration (CI) pipeline. (in workflows/eslint.yml)
 - Test Results: all tests passed.
+
+### End-to-End Testing
 
 ## API Endpoints
 
