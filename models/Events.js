@@ -20,7 +20,6 @@ const EventSchema = new mongoose.Schema({
     category: {
         type: [String],
         required: true,
-        enum: ['health', 'food', 'community', 'others'],
     },
     // the app that the event belongs to.
     app: {
