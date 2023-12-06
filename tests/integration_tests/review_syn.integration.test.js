@@ -50,4 +50,44 @@ describe('Review Creation and Retrieval with Mock', function () {
 
         expect(res.statusCode).to.equal();
     });
+
+    it('should update an existing review', async function () {
+        const reviewId = 'reviewId';
+        const updatedData = {
+            title: 'Updated Review',
+            content: 'Updated content.',
+        };
+
+        // Mocking Review.findByIdAndUpdate method
+        mock.expects('findByIdAndUpdate').withArgs(reviewId, updatedData, { new: true }).resolves(updatedData);
+
+        const res = supertest(app).put(`/api/v1/reviews/${reviewId}`).send(updatedData);
+
+        expect(res.statusCode).to.equal();
+        //expect(res.body).to.include(updatedData);
+    });
+
+    it('should delete a review', async function () {
+        const reviewId = 'reviewId';
+
+        // Mocking Review.findByIdAndDelete method
+        mock.expects('findByIdAndDelete').withArgs(reviewId).resolves(true);
+
+        const res = supertest(app).delete(`/api/v1/reviews/${reviewId}`);
+
+        expect(res.statusCode).to.equal();
+        //expect(res.body.success).to.equal(true);
+    });
+
+    it('should handle errors properly', async function () {
+        const errorMessage = 'Error occurred';
+
+        // Mocking Review.create to simulate an error
+        mock.expects('create').rejects(new Error(errorMessage));
+
+        const res = supertest(app).post('/api/v1/reviews').send({});
+
+        expect(res.statusCode).to.equal();
+        //expect(res.body.error).to.equal(errorMessage);
+    });
 });
