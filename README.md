@@ -45,25 +45,35 @@ This project does not use any third-party code.
 
 ```
 .
-├── controllers
-│   ├── app.test.js
-│   ├── auth.test.js
-│   ├── event.test.js
-│   ├── users.test.js
-│   └── reviews.js
-├── helpers
-│   └── errResponse.test.js
-├── middlewares
-│   ├── advancedResults.test.js
-│   ├── appChecker.test.js
-│   ├── async.test.js
-│   ├── auth.test.js
-│   └── eventChecker.test.js
-└── models
-    ├── Apps.test.js
-    ├── Events.test.js
-    └── Users.test.js
-
+├── tests
+│   ├── integration_tests
+│   │   ├── app_management.integration.test.js
+│   │   ├── app.integration.test.js
+│   │   ├── event_management.integration.test.js
+│   │   ├── event_visib.integration.test.js
+│   │   ├── middleware_model.integration.test.js
+│   │   ├── review_syn.integration.test.js
+│   │   ├── user_profile_management.integration.test.js
+│   │   └── userauth.integration.test.js
+│   └── unit_tests
+│       ├── controllers
+│       │   ├── app.test.js
+│       │   ├── auth.test.js
+│       │   ├── event.test.js
+│       │   ├── users.test.js
+│       │   └── reviews.test.js
+│       ├── helpers
+│       │   └── errResponse.test.js
+│       ├── middlewares
+│       │   ├── advancedResults.test.js
+│       │   ├── appChecker.test.js
+│       │   ├── async.test.js
+│       │   ├── auth.test.js
+│       │   └── eventChecker.test.js
+│       └── models
+│           ├── Apps.test.js
+│           ├── Events.test.js
+│           └── Users.test.js
 
 ```
 Note: the models/Reviews.js is tested in other files and achieve 100% coverage.
