@@ -392,8 +392,6 @@ There are two clients based on our project. So we test all the functions in the 
         -   `200: Success`
         -   `404: Resource not found`
 
-
-
 ## Target User & Clients
 
 Our service can be used for clients from medical field:
@@ -427,4 +425,8 @@ Our service and two client applications aim to cater to two distinct user groups
 
 Through the development of these two client applications, our service has made significant strides in the healthcare sector. The Health Discussion Platform facilitates direct patient-doctor consultations and establishes a supportive patient community. The Nursing Home Patient Alert System improves patient safety and provides an efficient tool for healthcare professionals to monitor and respond to patient needs.
 
+<<<<<<< HEAD
 The development of these applications underscores the versatility of our service, addressing specific issues in different domains to deliver valuable services to users. Looking ahead, we will continue refining these client applications, enhancing user experiences, and exploring opportunities to expand service applicability to meet a broader range of user needs.
+=======
+The development of these applications underscores the versatility of our service, addressing specific issues in different domains to deliver valuable services to users. Looking ahead, we will continue refining these client applications, enhancing user experiences, and exploring opportunities to expand service applicability to meet a broader range of user needs.
+>>>>>>> 1421c31ce8c214ab2eafdb927ff7d2a119c39ace
