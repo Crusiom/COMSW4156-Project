@@ -1,22 +1,40 @@
 const Review = require('../models/Reviews');
 const asyncHandler = require('../middlewares/async');
 
-// get all reviews that fall under the selected event
-// @routes    GET /api/v1/reviews
+// // get all reviews that fall under the selected event
+// // @routes    GET /api/v1/reviews
+// // @access    Public
+// exports.getReview = asyncHandler(async (req, res, next) => {
+//     try {
+//         const event = req.user.event;
+
+//         const reviews = await Review.find({ event });
+
+//         // Respond with a success status and the list of reviews
+//         return res.status(200).json({
+//             success: true,
+//             data: reviews,
+//         });
+//     } catch (err) {
+//         // Pass any encountered errors to the error-handling middleware
+//         return next(err);
+//     }
+// });
+
+// @desc      Get reviews under a specific event
+// @route     GET /api/v1/reviews/event/:eventId
 // @access    Public
 exports.getReview = asyncHandler(async (req, res, next) => {
     try {
-        const event = req.user.event;
+        const eventId = req.params.eventId;
 
-        const reviews = await Review.find({ event });
+        const reviews = await Review.find({ event: eventId });
 
-        // Respond with a success status and the list of reviews
         return res.status(200).json({
             success: true,
             data: reviews,
         });
     } catch (err) {
-        // Pass any encountered errors to the error-handling middleware
         return next(err);
     }
 });
@@ -26,10 +44,18 @@ exports.getReview = asyncHandler(async (req, res, next) => {
 // @access    Private
 exports.createReview = asyncHandler(async (req, res, next) => {
     try {
-        // Set the event of the event to the event of the currently authenticated user
-        req.body.event = req.user.event;
+        // Check if eventId is provided in the request body
+        if (!req.body.eventId) {
+            return res.status(400).json({
+                success: false,
+                error: 'Please provide an eventId for the review',
+            });
+        }
 
-        // Create a new event using the data from the request body
+        // Set the event of the review to the provided eventId
+        req.body.event = req.body.eventId;
+
+        // Create a new review using the data from the request body
         const review = await Review.create(req.body);
 
         // Respond with a success status and the created review data

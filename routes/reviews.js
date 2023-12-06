@@ -9,6 +9,6 @@ router.use(protect);
 
 router.route('/:id').put(updateReview).delete(deleteReview);
 router.route('/', checkEventConfig('Event')).post(createReview);
-router.route('/').get(getReview);
+router.route('/event/:eventId').get(getReview);
 
 module.exports = router;

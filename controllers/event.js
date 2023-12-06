@@ -10,8 +10,6 @@ exports.createEvent = asyncHandler(async (req, res, next) => {
         req.body.app = req.user.app;
         req.body.author = req.user.name;
 
-
-
         // Create a new event using the data from the request body
         const event = await Event.create(req.body);
 
@@ -72,19 +70,22 @@ exports.deleteEvent = asyncHandler(async (req, res, next) => {
 // @access    Private
 exports.getEvents = asyncHandler(async (req, res, next) => {
     try {
-        // Retrieve the app of the currently authenticated user
         const app = req.user.app;
+        const category = req.query.category;
 
-        // Find events associated with the user's app
-        const events = await Event.find({ app });
+        const query = { app: app };
 
-        // Respond with a success status and the list of events
+        if (category) {
+            query.category = category;
+        }
+
+        const events = await Event.find(query);
+
         return res.status(200).json({
             success: true,
             data: events,
         });
     } catch (err) {
-        // Pass any encountered errors to the error-handling middleware
         return next(err);
     }
 });
