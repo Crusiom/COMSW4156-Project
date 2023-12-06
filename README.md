@@ -123,6 +123,34 @@ The tests are in tests/Integration_tests.
 
 ### End-to-End Testing
 
+There are two clients based on our project. So we test all the functions in the following checklists for both clients:
+
+- For Health Discussion Platform
+
+|          Test           | Done |
+| :---------------------: | :--: |
+|      Login Success      |  √   |
+|    Handle Login Fail    |  √   |
+|      Get all posts      |  √   |
+|      Publish posts      |  √   |
+|    Publish comments     |  √   |
+|      Get comments       |  √   |
+| Change category of post |  √   |
+
+
+
+- For Health Center Alert System
+
+|              Test               | Done |
+| :-----------------------------: | :--: |
+|       Send Alert Success        |  √   |
+|      Receive Alert Success      |  √   |
+| Receive multiple Alerts success |  √   |
+|      Run in mobile device       |  √   |
+|     Run in different device     |  √   |
+
+
+
 ## API Endpoints
 
 **App**
@@ -364,6 +392,39 @@ The tests are in tests/Integration_tests.
         -   `200: Success`
         -   `404: Resource not found`
 
-```
 
-```
+
+## Target User & Clients
+
+Our service can be used for clients from medical field:
+
+### Target Users
+
+Our service and two client applications aim to cater to two distinct user groups:
+
+- **Health Discussion Platform:**
+
+  - Target Users: Patients seeking medical advice, consultation, and a platform to discuss their medical conditions with doctors and fellow patients.
+
+- **Nursing Home Patient Alert System:**
+
+  - Target Users: Healthcare professionals in nursing homes and patients requiring continuous monitoring and timely medical assistance.
+  
+  
+
+### Description of Clients and Problem Resolution
+
+- **Health Discussion Platform:**
+  - **Functionality:** Provides a platform for patients to consult with doctors, seek medical advice, and engage in discussions with other patients.
+  - **Problem Resolution:** Enables patients to have convenient direct interactions with healthcare professionals, fostering a supportive community for sharing medical experiences and advice.
+- **Nursing Home Patient Alert System:**
+  - **Functionality:** Offers an alert system allowing healthcare professionals to promptly respond to patient needs.
+  - **Problem Resolution:** Enhances patient safety in nursing homes, ensuring timely responses to urgent patient requirements. Reduces medical risks by providing real-time monitoring and alert features.
+
+
+
+### Summary
+
+Through the development of these two client applications, our service has made significant strides in the healthcare sector. The Health Discussion Platform facilitates direct patient-doctor consultations and establishes a supportive patient community. The Nursing Home Patient Alert System improves patient safety and provides an efficient tool for healthcare professionals to monitor and respond to patient needs.
+
+The development of these applications underscores the versatility of our service, addressing specific issues in different domains to deliver valuable services to users. Looking ahead, we will continue refining these client applications, enhancing user experiences, and exploring opportunities to expand service applicability to meet a broader range of user needs.
