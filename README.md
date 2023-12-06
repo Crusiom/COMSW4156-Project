@@ -364,7 +364,6 @@ The tests are in tests/Integration_tests.
         -   `200: Success`
         -   `404: Resource not found`
 
-```
 
 ## Target User & Clients
 
