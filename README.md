@@ -49,20 +49,24 @@ This project does not use any third-party code.
 │   ├── app.test.js
 │   ├── auth.test.js
 │   ├── event.test.js
-│   └── users.test.js
+│   ├── users.test.js
+│   └── reviews.js
 ├── helpers
 │   └── errResponse.test.js
 ├── middlewares
 │   ├── advancedResults.test.js
 │   ├── appChecker.test.js
 │   ├── async.test.js
-│   └── auth.test.js
+│   ├── auth.test.js
+│   └── eventChecker.test.js
 └── models
     ├── Apps.test.js
     ├── Events.test.js
     └── Users.test.js
-```
 
+
+```
+Note: the models/Reviews.js is tested in other files and achieve 100% coverage.
 ### Unit Testing
 
 -   To run the test: `npm test`
@@ -73,12 +77,14 @@ This project does not use any third-party code.
 
 -   To see the current unit test coverage, run: `npm test -- --coverage`
 -   Test Result:
-    -   Controllers Module Branch Coverage: 72.22%
+    -   Controllers Module Branch Coverage: 77.27%
     -   Middlewares Module Branch Coverage: 100%
     -   Helper Module Branch Coverage: 100%
     -   Models Module Branch Coverage: 50%
-    -   Overall: 86.36%
-        <img width="628" alt="Screenshot 2023-11-30 at 2 56 52 PM" src="https://github.com/Crusiom/COMSW4156-Project/assets/73783044/3ff71fc5-502f-4515-8c9b-75880d464ddd">
+    -   Overall: 87.5%
+
+      <img width="597" alt="controllers" src="https://github.com/Crusiom/COMSW4156-Project/assets/73783044/adca2ceb-1ec7-49b8-9d60-4ae7960e5a39">
+
 
 ### External Integration Tests
 
@@ -114,7 +120,10 @@ The tests are in tests/Integration_tests.
 
 -   Event Visibility Integration Tests (`event_visib.integration.test.js`)
     -   Simulate a user creating an event and a different user subsequently viewing the event list.
-
+      
+-   Review Management Integration Tests (`review_management.integration.test.js`)
+    -   validates the full lifecycle of reviews, including creation, retrieval, updating, deletion, and error handling scenarios.
+  
 ### Bug Finder
 
 -   This project uses ESLint as our static analysis tool to check the entire codebase for syntax errors, and potential bugs, and to enforce a consistent code style. This helps maintain code quality and readability.
