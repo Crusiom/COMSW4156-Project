@@ -130,10 +130,10 @@ The tests are in tests/Integration_tests.
 
 -   Event Visibility Integration Tests (`event_visib.integration.test.js`)
     -   Simulate a user creating an event and a different user subsequently viewing the event list.
-      
+    
 -   Review Management Integration Tests (`review_management.integration.test.js`)
     -   validates the full lifecycle of reviews, including creation, retrieval, updating, deletion, and error handling scenarios.
-  
+
 ### Bug Finder
 
 -   This project uses ESLint as our static analysis tool to check the entire codebase for syntax errors, and potential bugs, and to enforce a consistent code style. This helps maintain code quality and readability.
@@ -417,16 +417,13 @@ Our service can be used for clients from medical field:
 
 ### Target Users
 
-Our service and two client applications aim to cater to two distinct user groups:
+Our service and applications aim to cater to medical fields user groups:
 
 - **Health Discussion Platform:**
 
-  - Target Users: Patients seeking medical advice, consultation, and a platform to discuss their medical conditions with doctors and fellow patients.
+  - **link: https://github.com/Crusiom/4156-Clients**
 
-- **Nursing Home Patient Alert System:**
-
-  - Target Users: Healthcare professionals in nursing homes and patients requiring continuous monitoring and timely medical assistance.
-  
+  - Target Users: Patients seeking medical advice, consultation, and a platform to discuss their medical conditions with doctors and fellow patients.  
   
 
 ### Description of Clients and Problem Resolution
@@ -434,15 +431,11 @@ Our service and two client applications aim to cater to two distinct user groups
 - **Health Discussion Platform:**
   - **Functionality:** Provides a platform for patients to consult with doctors, seek medical advice, and engage in discussions with other patients.
   - **Problem Resolution:** Enables patients to have convenient direct interactions with healthcare professionals, fostering a supportive community for sharing medical experiences and advice.
-- **Nursing Home Patient Alert System:**
-  - **Functionality:** Offers an alert system allowing healthcare professionals to promptly respond to patient needs.
-  - **Problem Resolution:** Enhances patient safety in nursing homes, ensuring timely responses to urgent patient requirements. Reduces medical risks by providing real-time monitoring and alert features.
-
 
 
 ### Summary
 
-Through the development of these two client applications, our service has made significant strides in the healthcare sector. The Health Discussion Platform facilitates direct patient-doctor consultations and establishes a supportive patient community. The Nursing Home Patient Alert System improves patient safety and provides an efficient tool for healthcare professionals to monitor and respond to patient needs.
+Through the development of this client application, our service has made significant strides in the healthcare sector. The Health Discussion Platform facilitates direct patient-doctor consultations and establishes a supportive patient community. 
 
 
-The development of these applications underscores the versatility of our service, addressing specific issues in different domains to deliver valuable services to users. Looking ahead, we will continue refining these client applications, enhancing user experiences, and exploring opportunities to expand service applicability to meet a broader range of user needs.
+Looking ahead, we will continue refining these client applications, enhancing user experiences, and exploring opportunities to expand service applicability to meet a broader range of user needs.
