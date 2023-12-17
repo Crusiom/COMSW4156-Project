@@ -1,34 +1,36 @@
 const request = require('supertest');
-const app = require('../../models/Apps');
+const baseUrl = 'http://localhost:3000';
+let token;
 
-describe('User Profile Management Endpoints', () => {
-    // Test for fetching a user profile
-    it('should fetch a user profile', async () => {
-        const userId = 'someUserId'; // Replace with a valid user ID
-        const res = request(app).get(`/api/v1/users/${userId}`);
-        expect(res.statusCode).toEqual();
-        //expect(res.body).toHaveProperty('id', userId);
+beforeAll(async () => {
+    // Log in and get token
+    const loginRes = await request(baseUrl)
+        .post('/api/v1/auth/login')
+        .send({ email: 'dw3033@columbia.edu', password: '123456' });
+    token = loginRes.body.token;
+}, 10000); // Increased timeout
+
+describe('API Integration Tests', () => {
+    const validUserId = '6568e8e386198d93d030ec27'; 
+
+    it('should create a new app', async () => {
+        const appData = {
+            title: 'New App'
+        };
+        const res = await request(baseUrl)
+            .post('/api/v1/apps')
+            .set('Authorization', `Bearer ${token}`)
+            .send(appData);
+        expect(res.statusCode).toEqual(200); // Success
+        expect(res.body).toHaveProperty('data');
     });
 
-    // Test for updating a user profile
-    it('should update a user profile', async () => {
-        const userId = 'someUserIdToUpdate'; // Replace with a valid user ID
-        const updatedData = { name: 'Updated Name', email: 'updated@example.com' };
-        const res = request(app).put(`/api/v1/users/${userId}`).send(updatedData);
-        expect(res.statusCode).toEqual(); // Or 204 if no content
-    });
-
-    // Test for deleting a user account
-    it('should delete a user account', async () => {
-        const userId = 'someUserIdToDelete'; // Replace with a valid user ID to delete
-        const res = request(app).delete(`/api/v1/users/${userId}`);
-        expect(res.statusCode).toEqual(); // Or 204 if no content
-    });
-
-    // Test for handling invalid user ID
-    it('should return an error for invalid user ID', async () => {
-        const invalidUserId = 'invalidUserId';
-        const res = request(app).get(`/api/v1/users/${invalidUserId}`);
-        expect(res.statusCode).toEqual(); // Assuming 404 for not found
+    it('should fetch user profile', async () => {
+        // Ensure validUserId is a valid ObjectId from your database
+        const res = await request(baseUrl)
+            .get(`/api/v1/users/${validUserId}`)
+            .set('Authorization', `Bearer ${token}`);
+        expect(res.statusCode).toEqual(200); // Success
+        expect(res.body).toHaveProperty('data');
     });
 });

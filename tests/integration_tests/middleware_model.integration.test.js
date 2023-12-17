@@ -1,43 +1,28 @@
-const chai = require('chai');
-const chaiHttp = require('chai-http');
-const nock = require('nock');
-const expect = chai.expect;
+const request = require('supertest');
+const baseUrl = 'http://localhost:3000';
+let userToken;
+let otherUserToken;
+let createdEventId;
 
-chai.use(chaiHttp);
+beforeAll(async () => {
+    // Log in and get token
+    const loginRes = await request(baseUrl)
+        .post('/api/v1/auth/login')
+        .send({ email: 'dw3033@columbia.edu', password: '123456' });
+    token = loginRes.body.token;
+}, 10000); // Increased timeout
 
 describe('Middleware and Model Integration Tests', () => {
-    const baseApi = 'http://localhost:3000';
-
-    beforeEach(() => {
-        nock.cleanAll();
+    // Test for getting user profiles with advanced results middleware
+    it('should return paginated results for Users', async () => {
+        const res = await request(baseUrl)
+            .get('/api/v1/users')
+            .set('Authorization', `Bearer ${token}`);
+        
+        expect(res.statusCode).toEqual(200);
+        expect(res.body).toBeInstanceOf(Object);
+        expect(res.body.success).toEqual(true);
+        expect(res.body.data).toBeInstanceOf(Array);
     });
 
-    describe('Advanced Results Middleware with Users Model', () => {
-        it('should return paginated results for Users', (done) => {
-            // Mock response for the Users route
-            const usersData = [
-                { name: 'John Doe', email: 'john@example.com', role: 'user', app: 'TestApp' },
-                { name: 'Jane Doe', email: 'jane@example.com', role: 'user', app: 'TestApp' },
-            ];
-
-            nock(baseApi)
-                .get('/api/v1/users') // Adjust the endpoint according to your routes
-                .reply(200, {
-                    success: true,
-                    count: usersData.length,
-                    data: usersData,
-                });
-
-            chai.request(baseApi)
-                .get('/api/v1/users')
-                .end((err, res) => {
-                    expect(res).to.have.status(200);
-                    expect(res.body).to.be.an('object');
-                    expect(res.body.success).to.equal(true);
-                    expect(res.body.data).to.be.an('array');
-                    expect(res.body.data).to.have.lengthOf(usersData.length);
-                    done();
-                });
-        });
-    });
 });

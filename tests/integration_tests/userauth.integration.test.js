@@ -3,7 +3,7 @@ const nock = require('nock');
 const expect = chai.expect;
 
 describe('User Authentication', () => {
-    const baseApi = 'http://localhost:6000';
+    const baseApi = 'http://localhost:3000';
 
     beforeEach(() => {
         nock.cleanAll();

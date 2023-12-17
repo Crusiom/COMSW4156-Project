@@ -1,60 +1,50 @@
-const chai = require('chai');
-const expect = chai.expect;
-const nock = require('nock');
-const app = require('../../models/Apps'); // Adjust the path as necessary
+const request = require('supertest');
+const baseUrl = 'http://localhost:3000'; // Replace with your server URL
+let userToken;
+let otherUserToken;
+let createdEventId;
 
-chai.use(require('chai-http'));
+beforeAll(async () => {
+    // Log in with the user and get token
+    const loginResUser = await request(baseUrl)
+        .post('/api/v1/auth/login')
+        .send({ email: 'dw3033@columbia.edu', password: '123456' });
+    userToken = loginResUser.body.token;
+
+    // Log in with the other user and get token
+    // Assuming the same credentials for simplicity; adjust if you have different users
+    const loginResOtherUser = await request(baseUrl)
+        .post('/api/v1/auth/login')
+        .send({ email: 'dw3033@columbia.edu', password: '123456' });
+    otherUserToken = loginResOtherUser.body.token;
+}, 10000);
 
 describe('Event Visibility Integration Tests', () => {
-    let userToken = 'userToken'; // Mock user token
-    let otherUserToken = 'otherUserToken'; // Mock other user token
-    let createdEventId = 'eventId'; // Mock event ID
-
-    beforeEach(() => {
-        // Mock user 1 creating an event
-        nock('http://localhost:3000') // Adjust your app's host and port
-            .post('/api/v1/events')
-            .reply(200, {
-                data: {
-                    _id: createdEventId,
-                },
-            });
-
-        // Mock user 2 fetching events
-        nock('http://localhost:3000') // Adjust your app's host and port
-            .get('/api/v1/events')
-            .reply(200, {
-                data: [{ _id: createdEventId }],
-            });
-    });
-
+    // Test for creating a new event by one user and its visibility to another user
     it('should allow a user to create an event and another user to view it', async () => {
-        const createdEventId = 'someEventId'; // Mocked event ID
-
-        // Mock the post request
-        nock('http://127.0.0.1:63672')
+        // User creates an event
+        const eventData = {
+            title: 'New Event',
+            description: 'Event Description',
+            date: '2023-01-01',
+            content: 'Detailed content of the event'
+        };
+        const createRes = await request(baseUrl)
             .post('/api/v1/events')
-            .reply(200, { data: { _id: createdEventId } });
+            .set('Authorization', `Bearer ${userToken}`)
+            .send(eventData);
 
-        // Mock the get request
-        nock('http://127.0.0.1:63673')
+        expect(createRes.statusCode).toEqual(200); // Assuming 200 for successful creation
+        createdEventId = createRes.body.data._id;
+
+        // Other user fetches events
+        const fetchRes = await request(baseUrl)
             .get('/api/v1/events')
-            .reply(200, { data: [{ _id: createdEventId }] });
+            .set('Authorization', `Bearer ${otherUserToken}`);
 
-        // Perform the test - ensure to await the responses
-        const res1 = chai.request(app).post('/api/v1/events').set('Authorization', `Bearer ${userToken}`).send({
-            /* event details */
-        });
-
-        console.log('res1: ', res1); // Logs the response body of the first request
-
-        const res2 = chai.request(app).get('/api/v1/events').set('Authorization', `Bearer ${otherUserToken}`);
-
-        console.log('res2: ', res2); // Logs the response body of the second request
+        expect(fetchRes.statusCode).toEqual(200); // Assuming 200 for successful fetch
+        expect(fetchRes.body.data.some(event => event._id === createdEventId)).toBeTruthy();
     });
 
-    afterEach(() => {
-        // Clean up and restore all overrides to their original state
-        nock.cleanAll();
-    });
+    // Additional tests as needed...
 });
