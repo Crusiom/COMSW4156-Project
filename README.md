@@ -244,9 +244,15 @@ There are two clients based on our project. So we test all the functions in the 
 
     -   Description:
         Create a new event that falls under a certain application. e.x. a therapy session of a medicare app.
+    -   Request Headers:
+        -   `Authorizatoin: string starting with 'Bearer'`
     -   Request Body:
         -   `id:string`
         -   `app:string`
+        -   `title:string`
+        -   `author:string`
+        -   `content:string`
+        -   `category:enum`
     -   Response Codes:
         -   `200: Success`
         -   `400: Unexpected json syntax in request body`
@@ -256,6 +262,8 @@ There are two clients based on our project. So we test all the functions in the 
 
     -   Description:
         Update an existing event that falls under a certain application.
+    -   Request Headers:
+        -   `Authorizatoin: string starting with 'Bearer'`
     -   Request Body:
         -   `id:string`
     -   Response Codes:
@@ -267,6 +275,8 @@ There are two clients based on our project. So we test all the functions in the 
 
     -   Description:
         Delete an existing event that falls under a certain application.
+    -   Request Headers:
+        -   `Authorizatoin: string starting with 'Bearer'`
     -   Request Body:
         -   `id:string`
     -   Response Codes:
@@ -276,9 +286,12 @@ There are two clients based on our project. So we test all the functions in the 
 
 -   `GET /api/v1/events`
     -   Description:
-        Get a list of all events that fall under the current application
+        Get a list of all events that fall under the current category
+    -   Request Headers:
+        -   `Authorizatoin: string starting with 'Bearer'`
     -   Request Body:
         -   `app:string`
+        -   `category:enum`
     -   Response Codes:
         -   `200: Success`
         -   `401: Not authorized to get events`
