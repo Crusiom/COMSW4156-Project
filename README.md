@@ -204,7 +204,7 @@ There are two clients based on our project. So we test all the functions in the 
         -   `email:string`
         -   `password:string`
         -   `app:string`
-        -   `role:string`
+        -   `role:enum`
     -   Response Codes:
         -   `200: Success`
         -   `400: User with this email already exists`
